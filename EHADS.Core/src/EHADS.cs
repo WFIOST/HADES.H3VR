@@ -5,12 +5,13 @@ namespace EHADS.Core
 {
     public class EHADS : MonoBehaviour
     {
-        private FallDamage _fallDamage;
         public static FVRPlayerBody Player => GM.CurrentPlayerBody;
+        
+        public FallDamage fallDamage;
 
         private void Awake()
         {
-            _fallDamage = gameObject.AddComponent<FallDamage>();
+            fallDamage = gameObject.AddComponent<FallDamage>();
         }
     }
 }

@@ -9,11 +9,11 @@ namespace EHADS.Core
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
     public class Plugin : BaseUnityPlugin
     {
+        public static Plugin Mod;
         public static ManualLogSource ConsoleLogger;
-
         public Plugin()
         {
-            ConsoleLogger = Logger;
+            Mod = this;
             Print($"Loading EHADS version {PluginInfo.VERSION}");
         }
 

@@ -15,18 +15,18 @@ namespace EHADS.Core
 
         private void Update()
         {
-            if (GM.IsDead()) return;
+            if (GM.IsDead() || !EHADSConfig.FallDamage.Enabled) return;
 
             var fallDmg = CalculateFallDamage();
             Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
-            if (fallDmg.Item2 < 20f)
-                EHADS.Player.HarmPercent(-(fallDmg.Item1 / 100)); //Harm the player the percentage that they fell
+            if (fallDmg.Item2 < EHADSConfig.FallDamage.FallHeight)
+                EHADS.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
         }
 
         private Tuple<float, float> CalculateFallDamage()
         {
             StartCoroutine(CheckPos());
-            float damage = _velocity * 2;
+            float damage = _velocity * EHADSConfig.FallDamage.DamageMultiplier;
             return new Tuple<float, float>(damage, _velocity);
         }
 
@@ -38,7 +38,7 @@ namespace EHADS.Core
             yield return new WaitForSeconds(1);
             _currentPos = position.y;
             //Then the "velocity" is how much has been moved between the seconds
-            _velocity = _previousPos - _currentPos;
+            _velocity = _currentPos - _previousPos;
         }
     }
 }
