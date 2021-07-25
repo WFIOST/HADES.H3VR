@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHADS.Core", "EHADS.Core\EHADS.Core.csproj", "{82E53915-3F55-4F72-A645-17324C181B4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HADES.Core", "HADES.Core\HADES.Core.csproj", "{82E53915-3F55-4F72-A645-17324C181B4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHADS.Items", "EHADS.Items\EHADS.Items.csproj", "{8D713C18-A044-4C33-AC3F-86F573CDD35E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HADES.Items", "HADES.Items\HADES.Items.csproj", "{8D713C18-A044-4C33-AC3F-86F573CDD35E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
