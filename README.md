@@ -10,7 +10,8 @@ Enhanced Health and Damage System (EHADS) for H3VR, based of the Ravenfield mod 
     
 - Bleeding
     - Damage to the player causes *bleeding* to body parts
-    - Use bandages, MedKits, Morphine, etc to heal
+    - Use bandages, MedKits, Morphine, Painkillers to heal
+    - Shot? Have a quick adrenalin rush and sprint out of there! You can extend this effect with adrenalin syringes, but be warned, take too much and die 
 
 - Realistic Movement
     - No more MEGA jump
