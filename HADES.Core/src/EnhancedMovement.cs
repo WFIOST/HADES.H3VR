@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using FistVR;
 using UnityEngine;
 
@@ -6,14 +7,61 @@ namespace HADES.Core
 {
     public class EnhancedMovement : MonoBehaviour
     {
-        public float MaxStamina;
-        public float StaminaGain;
-        public float StaminaLoss;
+
+        public float Stamina { get; private set; }
+        public float Weight
+        {
+            get
+            {
+                var qbSlots = HADES.Player.QuickbeltSlots;
+
+                var weight = 0.0f;
+                
+                foreach (FVRQuickBeltSlot slot in qbSlots.Where(slot => slot.CurObject != null))
+                {
+                    FVRPhysicalObject obj = slot.CurObject;
+
+                    if (slot.Type == FVRQuickBeltSlot.QuickbeltSlotType.Backpack) weight += BackpackWeightModifer;
+
+                    weight += obj.Size switch
+                    {
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Small => HADESConfig.EnhancedMovement
+                            .SmallObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Medium => HADESConfig.EnhancedMovement
+                            .MediumObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Large => HADESConfig.EnhancedMovement
+                            .LargeObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Massive => HADESConfig.EnhancedMovement
+                            .MassiveObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.CantCarryBig => HADESConfig.EnhancedMovement
+                            .CCBWeightModifer,
+                        _ => throw new ArgumentOutOfRangeException()
+                    };
+                }
+
+                return weight;
+            }
+        }
+
+        private float MaxStamina => HADESConfig.EnhancedMovement.MaxStamina;
+        private float StaminaGain => HADESConfig.EnhancedMovement.StaminaGain;
+        private float StaminaLoss => HADESConfig.EnhancedMovement.StaminaLoss;
         
-        public float currentStamina;
+        private float WeightModifier => HADESConfig.EnhancedMovement.WeightModifier;
+        private float BackpackWeightModifer => HADESConfig.EnhancedMovement.BackpackWeightModifier;
+        
         private void Start()
         {
+            Stamina = MaxStamina;
+        }
+
+        private void Update()
+        {
+            if (!HADESConfig.EnhancedMovement.Enabled) return;
             
+            float speed = HADES.Player.GetBodyMovementSpeed();
+            if (speed < 10f) return;
+            GM.CurrentMovementManager.SlidingSpeed -= (Stamina / 100);
         }
     }
 }

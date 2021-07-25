@@ -107,13 +107,34 @@ namespace HADES.Core
             public const string CATEGORY_NAME = "Enhanced Movement";
             
             public float MaxStamina => _maxStaminaEntry.Value;
-            private ConfigEntry<float> _maxStaminaEntry;
+            private readonly ConfigEntry<float> _maxStaminaEntry;
 
-            public float StaminaGain => _staminaGain.Value;
-            private ConfigEntry<float> _staminaGain;
+            public float StaminaGain => _staminaGainEntry.Value;
+            private readonly ConfigEntry<float> _staminaGainEntry;
 
-            public float StaminaLoss => _staminaLoss.Value;
-            private ConfigEntry<float> _staminaLoss;
+            public float StaminaLoss => _staminaLossEntry.Value;
+            private readonly ConfigEntry<float> _staminaLossEntry;
+
+            public float WeightModifier => _weightModifierEntry.Value;
+            private readonly ConfigEntry<float> _weightModifierEntry;
+
+            public float BackpackWeightModifier => _backpackWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _backpackWeightModifierEntry;
+
+            public float SmallObjectWeightModifier => _smallObjWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _smallObjWeightModifierEntry;
+
+            public float MediumObjectWeightModifier => _mediumObjWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _mediumObjWeightModifierEntry;
+
+            public float LargeObjectWeightModifier => _largeObjWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _largeObjWeightModifierEntry;
+
+            public float MassiveObjectWeightModifier => _massiveObjWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _massiveObjWeightModifierEntry;
+
+            public float CCBWeightModifer => _ccbObjWeightModifierEntry.Value;
+            private readonly ConfigEntry<float> _ccbObjWeightModifierEntry;
 
             public EnhancedMovementConfig()
             {
@@ -133,13 +154,79 @@ namespace HADES.Core
                     "Max stamina for the player, more stamina means you are able to move more"
                 );
 
-                _staminaGain = Plugin.Mod.Config.Bind
+                _staminaGainEntry = Plugin.Mod.Config.Bind
                 (
                     CATEGORY_NAME,
                     "Stamina Gain",
                     5f,
                     "The amount of stamina gained whilst inactive"
 
+                );
+
+                _staminaLossEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Stamina Loss",
+                    10f,
+                    "The amount of stamina lost whilst active"
+                );
+
+                const string WEIGHT_CAT_NAME = CATEGORY_NAME + " - Weight Configuration";
+                
+                _weightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Weight Modifer",
+                    1f,
+                    "How much what you are carrying modifies the stamina loss"
+                );
+
+                _backpackWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Backpack Weight Modifier",
+                    10f,
+                    "How much weight wearing a backpack will add"
+                );
+
+                _smallObjWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Small Object Weight Modifier",
+                    1f,
+                    "How much weight a small object will add if it is in a Quickbelt slot"
+                );
+
+                _mediumObjWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Medium Object Weight Modifier",
+                    2.5f,
+                    "How much weight a medium object will add if it is in a Quickbelt slot"
+                );
+                
+                _largeObjWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Large Object Weight Modifier",
+                    5f,
+                    "How much weight a large object will add if it is in a Quickbelt slot"
+                );
+                
+                _massiveObjWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Massive Object Weight Modifier",
+                    10f,
+                    "How much weight a massive object will add if it is in a Quickbelt slot"
+                );
+                
+                _ccbObjWeightModifierEntry = Plugin.Mod.Config.Bind
+                (
+                    WEIGHT_CAT_NAME,
+                    "Can't Carry Big Object Weight Modifier",
+                    15f,
+                    "How much weight a Can't Carry Big object will add if it is in a Quickbelt slot"
                 );
             }
         }

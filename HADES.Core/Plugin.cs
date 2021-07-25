@@ -1,8 +1,8 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using FistVR;
-using static EHADS.Common.Logging;
-using PluginInfo = EHADS.Common.PluginInfo;
+using static HADES.Common.Logging;
+using PluginInfo = HADES.Common.PluginInfo;
 
 namespace HADES.Core
 {

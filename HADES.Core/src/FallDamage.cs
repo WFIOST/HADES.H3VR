@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using EHADS.Common;
+using HADES.Common;
 using FistVR;
 using UnityEngine;
-using static EHADS.Common.Logging;
+using static HADES.Common.Logging;
 
 namespace HADES.Core
 {

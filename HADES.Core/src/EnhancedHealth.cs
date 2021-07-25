@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using EHADS.Common;
+using HADES.Common;
 using FistVR;
 using UnityEngine;
 using UnityEngine.UI;
-using static EHADS.Common.Logging;
+using static HADES.Common.Logging;
 
 namespace HADES.Core
 {
@@ -29,7 +29,7 @@ namespace HADES.Core
 
         private void Update()
         {
-            //i'm not sure who thought that the formulat was (_initialhealth / currenthealth) * 100 lol - potatoes
+            //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = (CurrentHealth / _initialHealth) * 100; //Thanks nathan!
 
             if (HealthPercentage < RegenCap)

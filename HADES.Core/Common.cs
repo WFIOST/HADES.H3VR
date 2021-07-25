@@ -1,7 +1,7 @@
 using BepInEx.Logging;
 using HADES.Core;
 
-namespace EHADS.Common
+namespace HADES.Common
 {
     public struct PluginInfo
     {
