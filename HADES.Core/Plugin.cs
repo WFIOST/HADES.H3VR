@@ -11,6 +11,7 @@ namespace HADES.Core
     {
         public static Plugin Mod;
         public static ManualLogSource ConsoleLogger;
+
         public Plugin()
         {
             Mod = this;

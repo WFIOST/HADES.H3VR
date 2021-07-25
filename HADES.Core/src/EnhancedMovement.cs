@@ -7,8 +7,8 @@ namespace HADES.Core
 {
     public class EnhancedMovement : MonoBehaviour
     {
-
         public float Stamina { get; private set; }
+
         public float Weight
         {
             get
@@ -16,7 +16,7 @@ namespace HADES.Core
                 var qbSlots = HADES.Player.QuickbeltSlots;
 
                 var weight = 0.0f;
-                
+
                 foreach (FVRQuickBeltSlot slot in qbSlots.Where(slot => slot.CurObject != null))
                 {
                     FVRPhysicalObject obj = slot.CurObject;
@@ -46,10 +46,10 @@ namespace HADES.Core
         private float MaxStamina => HADESConfig.EnhancedMovement.MaxStamina;
         private float StaminaGain => HADESConfig.EnhancedMovement.StaminaGain;
         private float StaminaLoss => HADESConfig.EnhancedMovement.StaminaLoss;
-        
+
         private float WeightModifier => HADESConfig.EnhancedMovement.WeightModifier;
         private float BackpackWeightModifer => HADESConfig.EnhancedMovement.BackpackWeightModifier;
-        
+
         private void Start()
         {
             Stamina = MaxStamina;
@@ -58,10 +58,10 @@ namespace HADES.Core
         private void Update()
         {
             if (!HADESConfig.EnhancedMovement.Enabled) return;
-            
+
             float speed = HADES.Player.GetBodyMovementSpeed();
             if (speed < 10f) return;
-            GM.CurrentMovementManager.SlidingSpeed -= (Stamina / 100);
+            GM.CurrentMovementManager.SlidingSpeed -= Stamina / 100;
         }
     }
 }

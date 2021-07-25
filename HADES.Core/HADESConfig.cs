@@ -1,29 +1,24 @@
-using System.Collections.Generic;
 using BepInEx.Configuration;
 
 namespace HADES.Core
 {
     public struct HADESConfig
     {
-        public static FallDamageConfig        FallDamage        { get; }
-        public static EnhancedHealthConfig    EnhancedHealth    { get; }
-        public static EnhancedMovementConfig  EnhancedMovement  { get; }
+        public static FallDamageConfig FallDamage { get; }
+        public static EnhancedHealthConfig EnhancedHealth { get; }
+        public static EnhancedMovementConfig EnhancedMovement { get; }
 
         public class ConfigEntry
         {
-            public bool Enabled => EnabledEntry.Value;
             protected ConfigEntry<bool> EnabledEntry;
+            public bool Enabled => EnabledEntry.Value;
         }
-        
+
         public class FallDamageConfig : ConfigEntry
         {
             private const string CATEGORY_NAME = "Fall Damages";
-
-            public float FallHeight => _fallHeightEntry.Value;
-            private readonly ConfigEntry<float> _fallHeightEntry;
-
-            public float DamageMultiplier => _damageMultiplierEntry.Value;
             private readonly ConfigEntry<float> _damageMultiplierEntry;
+            private readonly ConfigEntry<float> _fallHeightEntry;
 
             public FallDamageConfig()
             {
@@ -51,19 +46,17 @@ namespace HADES.Core
                     "The multiplier is multiplied by your velocity (distance traveled between 2 points in 1 second) and is what damages you"
                 );
             }
+
+            public float FallHeight => _fallHeightEntry.Value;
+
+            public float DamageMultiplier => _damageMultiplierEntry.Value;
         }
 
         public class EnhancedHealthConfig : ConfigEntry
         {
             private const string CATEGORY_NAME = "Enhanced Health";
-
-            public float RegenCap => _regenCapEntry.Value;
             private readonly ConfigEntry<float> _regenCapEntry;
-
-            public float RegenDelay => _regenDelayEntry.Value;
             private readonly ConfigEntry<float> _regenDelayEntry;
-
-            public float RegenSpeed => _regenSpeedEntry.Value;
             private readonly ConfigEntry<float> _regenSpeedEntry;
 
             public EnhancedHealthConfig()
@@ -100,41 +93,27 @@ namespace HADES.Core
                     "How long does it take to regenerate to the regeneration cap"
                 );
             }
+
+            public float RegenCap => _regenCapEntry.Value;
+
+            public float RegenDelay => _regenDelayEntry.Value;
+
+            public float RegenSpeed => _regenSpeedEntry.Value;
         }
 
         public class EnhancedMovementConfig : ConfigEntry
         {
             public const string CATEGORY_NAME = "Enhanced Movement";
-            
-            public float MaxStamina => _maxStaminaEntry.Value;
-            private readonly ConfigEntry<float> _maxStaminaEntry;
-
-            public float StaminaGain => _staminaGainEntry.Value;
-            private readonly ConfigEntry<float> _staminaGainEntry;
-
-            public float StaminaLoss => _staminaLossEntry.Value;
-            private readonly ConfigEntry<float> _staminaLossEntry;
-
-            public float WeightModifier => _weightModifierEntry.Value;
-            private readonly ConfigEntry<float> _weightModifierEntry;
-
-            public float BackpackWeightModifier => _backpackWeightModifierEntry.Value;
             private readonly ConfigEntry<float> _backpackWeightModifierEntry;
-
-            public float SmallObjectWeightModifier => _smallObjWeightModifierEntry.Value;
-            private readonly ConfigEntry<float> _smallObjWeightModifierEntry;
-
-            public float MediumObjectWeightModifier => _mediumObjWeightModifierEntry.Value;
-            private readonly ConfigEntry<float> _mediumObjWeightModifierEntry;
-
-            public float LargeObjectWeightModifier => _largeObjWeightModifierEntry.Value;
-            private readonly ConfigEntry<float> _largeObjWeightModifierEntry;
-
-            public float MassiveObjectWeightModifier => _massiveObjWeightModifierEntry.Value;
-            private readonly ConfigEntry<float> _massiveObjWeightModifierEntry;
-
-            public float CCBWeightModifer => _ccbObjWeightModifierEntry.Value;
             private readonly ConfigEntry<float> _ccbObjWeightModifierEntry;
+            private readonly ConfigEntry<float> _largeObjWeightModifierEntry;
+            private readonly ConfigEntry<float> _massiveObjWeightModifierEntry;
+            private readonly ConfigEntry<float> _maxStaminaEntry;
+            private readonly ConfigEntry<float> _mediumObjWeightModifierEntry;
+            private readonly ConfigEntry<float> _smallObjWeightModifierEntry;
+            private readonly ConfigEntry<float> _staminaGainEntry;
+            private readonly ConfigEntry<float> _staminaLossEntry;
+            private readonly ConfigEntry<float> _weightModifierEntry;
 
             public EnhancedMovementConfig()
             {
@@ -160,7 +139,6 @@ namespace HADES.Core
                     "Stamina Gain",
                     5f,
                     "The amount of stamina gained whilst inactive"
-
                 );
 
                 _staminaLossEntry = Plugin.Mod.Config.Bind
@@ -172,7 +150,7 @@ namespace HADES.Core
                 );
 
                 const string WEIGHT_CAT_NAME = CATEGORY_NAME + " - Weight Configuration";
-                
+
                 _weightModifierEntry = Plugin.Mod.Config.Bind
                 (
                     WEIGHT_CAT_NAME,
@@ -204,7 +182,7 @@ namespace HADES.Core
                     2.5f,
                     "How much weight a medium object will add if it is in a Quickbelt slot"
                 );
-                
+
                 _largeObjWeightModifierEntry = Plugin.Mod.Config.Bind
                 (
                     WEIGHT_CAT_NAME,
@@ -212,7 +190,7 @@ namespace HADES.Core
                     5f,
                     "How much weight a large object will add if it is in a Quickbelt slot"
                 );
-                
+
                 _massiveObjWeightModifierEntry = Plugin.Mod.Config.Bind
                 (
                     WEIGHT_CAT_NAME,
@@ -220,7 +198,7 @@ namespace HADES.Core
                     10f,
                     "How much weight a massive object will add if it is in a Quickbelt slot"
                 );
-                
+
                 _ccbObjWeightModifierEntry = Plugin.Mod.Config.Bind
                 (
                     WEIGHT_CAT_NAME,
@@ -229,8 +207,28 @@ namespace HADES.Core
                     "How much weight a Can't Carry Big object will add if it is in a Quickbelt slot"
                 );
             }
+
+            public float MaxStamina => _maxStaminaEntry.Value;
+
+            public float StaminaGain => _staminaGainEntry.Value;
+
+            public float StaminaLoss => _staminaLossEntry.Value;
+
+            public float WeightModifier => _weightModifierEntry.Value;
+
+            public float BackpackWeightModifier => _backpackWeightModifierEntry.Value;
+
+            public float SmallObjectWeightModifier => _smallObjWeightModifierEntry.Value;
+
+            public float MediumObjectWeightModifier => _mediumObjWeightModifierEntry.Value;
+
+            public float LargeObjectWeightModifier => _largeObjWeightModifierEntry.Value;
+
+            public float MassiveObjectWeightModifier => _massiveObjWeightModifierEntry.Value;
+
+            public float CCBWeightModifer => _ccbObjWeightModifierEntry.Value;
         }
-        
+
         static HADESConfig()
         {
             FallDamage = new FallDamageConfig();

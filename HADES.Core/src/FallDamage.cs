@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using HADES.Common;
 using FistVR;
+using HADES.Common;
 using UnityEngine;
 using static HADES.Common.Logging;
 
@@ -10,8 +8,8 @@ namespace HADES.Core
     public class FallDamage : MonoBehaviour
     {
         private Vector3 _currentPos;
-        private Vector3 _previousPos;
         private float _currentVelocity;
+        private Vector3 _previousPos;
         private float _previousVelocity;
         private float _velocityDifference;
 
@@ -30,6 +28,11 @@ namespace HADES.Core
                 HADES.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
         }
 
+        public void FixedUpdate()
+        {
+            CalculateVelocity();
+        }
+
         private Tuple<float, float> CalculateFallDamage()
         {
             float damage = 0;
@@ -39,34 +42,26 @@ namespace HADES.Core
             //if EV is less than 0, it means that the velocity was negative enough that the VDT could not
             //bring it back up to positive. Also, the velocity being negative means its slowing down.
             //The VDT is to prevent coming from a run to a stop doesnt hurt you lol
-            if (effectiveVelocity < 0)
-            {
-                damage = effectiveVelocity * HADESConfig.FallDamage.FallHeight;
-            }
+            if (effectiveVelocity < 0) damage = effectiveVelocity * HADESConfig.FallDamage.FallHeight;
             return new Tuple<float, float>(damage, effectiveVelocity);
         }
 
-        public void FixedUpdate()
-        {
-            CalculateVelocity();
-        }
-        
         //this exists to not clog up fixedupdate
         private void CalculateVelocity()
         {
             //note that the time frame for everything here is per step
             //etc, if the velocity is 1, that means 1 meter every 50th of a second
-            
+
             //set prev pos
             _previousPos = _currentPos;
             //probably not a good idea to hard-code the idea that there's only ever one player.
             _currentPos = HADES.Player.transform.position;
-            
+
             //get velocity
             _previousVelocity = _currentVelocity;
             //calculate velocity
             _currentVelocity = (_previousPos - _currentPos).magnitude;
-            
+
             //get velocity difference
             _velocityDifference = _currentVelocity - _previousVelocity;
         }
