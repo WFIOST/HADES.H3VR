@@ -13,14 +13,14 @@ namespace EHADS.Common
     {
         public static void Print(object msg, LogLevel level = LogLevel.Info)
         {
-            Core.EHADS.ConsoleLogger.Log(level, msg);
+            Core.Plugin.ConsoleLogger.Log(level, msg);
         }
 
         public static class Debug
         {
             public static void Print(object msg)
             {
-                Core.EHADS.ConsoleLogger.Log(LogLevel.Debug, msg);
+                Core.Plugin.ConsoleLogger.Log(LogLevel.Debug, msg);
             }
         }
     }
