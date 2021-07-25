@@ -9,9 +9,11 @@ namespace EHADS.Core
 {
     public class FallDamage : MonoBehaviour
     {
-        private float _currentPos;
-        private float _previousPos;
-        private float _velocity;
+        private Vector3 _currentPos;
+        private Vector3 _previousPos;
+        private float _currentVelocity;
+        private float _previousVelocity;
+        private float _velocityDifference;
 
         private void Start()
         {
@@ -24,26 +26,49 @@ namespace EHADS.Core
 
             var fallDmg = CalculateFallDamage();
             Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
-            if (fallDmg.Item2 < EHADSConfig.FallDamage.FallHeight)
+            if (fallDmg.Item1 >= 1)
                 EHADS.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
         }
 
         private Tuple<float, float> CalculateFallDamage()
         {
-            StartCoroutine(CheckPos());
-            float damage = _velocity * EHADSConfig.FallDamage.DamageMultiplier;
-            return new Tuple<float, float>(damage, _velocity);
+            float damage = 0;
+            // * 0.02 is effectively / 50 but mult because muh optimization
+            var effectiveVelocity = _velocityDifference + EHADSConfig.FallDamage.FallHeight * 0.02f;
+
+            //if EV is less than 0, it means that the velocity was negative enough that the VDT could not
+            //bring it back up to positive. Also, the velocity being negative means its slowing down.
+            //The VDT is to prevent coming from a run to a stop doesnt hurt you lol
+            if (effectiveVelocity < 0)
+            {
+                damage = effectiveVelocity * EHADSConfig.FallDamage.DamageMultiplier;
+            }
+            return new Tuple<float, float>(damage, effectiveVelocity);
         }
 
-        private IEnumerator CheckPos()
+        public void FixedUpdate()
         {
-            //Get the player position, wait one second, then check again
-            Vector3 position = EHADS.Player.transform.position;
-            _previousPos = position.y;
-            yield return new WaitForSeconds(1);
-            _currentPos = position.y;
-            //Then the "velocity" is how much has been moved between the seconds
-            _velocity = _currentPos - _previousPos;
+            CalculateVelocity();
+        }
+        
+        //this exists to not clog up fixedupdate
+        private void CalculateVelocity()
+        {
+            //note that the time frame for everything here is per step
+            //etc, if the velocity is 1, that means 1 meter every 50th of a second
+            
+            //set prev pos
+            _previousPos = _currentPos;
+            //probably not a good idea to hard-code the idea that there's only ever one player.
+            _currentPos = EHADS.Player.transform.position;
+            
+            //get velocity
+            _previousVelocity = _currentVelocity;
+            //calculate velocity
+            _currentVelocity = (_previousPos - _currentPos).magnitude;
+            
+            //get velocity difference
+            _velocityDifference = _currentVelocity - _previousVelocity;
         }
     }
 }
