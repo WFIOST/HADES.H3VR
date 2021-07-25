@@ -5,8 +5,9 @@ namespace EHADS.Core
 {
     public struct EHADSConfig
     {
-        public static FallDamage        FallDamageConfig        { get; }
-        public static EnhancedHealth    EnhancedHealthConfig    { get; }
+        public static FallDamageConfig        FallDamage        { get; }
+        public static EnhancedHealthConfig    EnhancedHealth    { get; }
+        public static EnhancedMovementConfig  EnhancedMovement  { get; }
 
         public class ConfigEntry
         {
@@ -14,7 +15,7 @@ namespace EHADS.Core
             protected ConfigEntry<bool> EnabledEntry;
         }
         
-        public class FallDamage : ConfigEntry
+        public class FallDamageConfig : ConfigEntry
         {
             private const string CATEGORY_NAME = "Fall Damages";
 
@@ -24,7 +25,7 @@ namespace EHADS.Core
             public float DamageMultiplier => _damageMultiplierEntry.Value;
             private readonly ConfigEntry<float> _damageMultiplierEntry;
 
-            public FallDamage()
+            public FallDamageConfig()
             {
                 EnabledEntry = Plugin.Mod.Config.Bind
                 (
@@ -52,7 +53,7 @@ namespace EHADS.Core
             }
         }
 
-        public class EnhancedHealth : ConfigEntry
+        public class EnhancedHealthConfig : ConfigEntry
         {
             private const string CATEGORY_NAME = "Enhanced Health";
 
@@ -65,7 +66,7 @@ namespace EHADS.Core
             public float RegenSpeed => _regenSpeedEntry.Value;
             private readonly ConfigEntry<float> _regenSpeedEntry;
 
-            public EnhancedHealth()
+            public EnhancedHealthConfig()
             {
                 EnabledEntry = Plugin.Mod.Config.Bind
                 (
@@ -100,11 +101,17 @@ namespace EHADS.Core
                 );
             }
         }
+
+        public class EnhancedMovementConfig : ConfigEntry
+        {
+            
+        }
         
         static EHADSConfig()
         {
-            FallDamageConfig = new FallDamage();
-            EnhancedHealthConfig = new EnhancedHealth();
+            FallDamage = new FallDamageConfig();
+            EnhancedHealth = new EnhancedHealthConfig();
+            EnhancedMovement = new EnhancedMovementConfig();
         }
     }
 }
