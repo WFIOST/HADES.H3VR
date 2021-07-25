@@ -29,7 +29,8 @@ namespace EHADS.Core
 
         private void Update()
         {
-            HealthPercentage = (_initialHealth / CurrentHealth) * 100; //Thanks nathan!
+            //i'm not sure who thought that the formulat was (_initialhealth / currenthealth) * 100 lol - potatoes
+            HealthPercentage = (CurrentHealth / _initialHealth) * 100; //Thanks nathan!
 
             if (HealthPercentage < RegenCap)
             {
