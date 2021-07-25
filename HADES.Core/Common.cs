@@ -1,11 +1,11 @@
 using BepInEx.Logging;
-using EHADS.Core;
+using HADES.Core;
 
 namespace EHADS.Common
 {
     public struct PluginInfo
     {
-        public const string NAME = "EHADS.Core";
+        public const string NAME = "HADES.Core";
         public const string GUID = "net.frityet.ehads";
         public const string VERSION = "1.0.0";
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 using static EHADS.Common.Logging;
 
-namespace EHADS.Core
+namespace HADES.Core
 {
-    public class EHADS : MonoBehaviour
+    public class HADES : MonoBehaviour
     {
         public static FVRPlayerBody Player => GM.CurrentPlayerBody;
 

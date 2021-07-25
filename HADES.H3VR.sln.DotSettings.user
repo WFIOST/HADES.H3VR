@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002FFrityet_002FDocuments_002FEHADS_002EH3VR_002Flibs_002FAssembly_002DCSharp_005Fpublicized_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
+  &lt;Assembly Path="/Users/Frityet/Documents/H3VR-Ref/Assembly-CSharp.dll" /&gt;
+  &lt;Assembly Path="/Users/Frityet/Documents/EHADS.H3VR/packages/Mono.Cecil.0.10.4/lib/net35/Mono.Cecil.dll" /&gt;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

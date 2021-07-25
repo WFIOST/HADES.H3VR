@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using BepInEx.Configuration;
 
-namespace EHADS.Core
+namespace HADES.Core
 {
-    public struct EHADSConfig
+    public struct HADESConfig
     {
         public static FallDamageConfig        FallDamage        { get; }
         public static EnhancedHealthConfig    EnhancedHealth    { get; }
@@ -104,10 +104,47 @@ namespace EHADS.Core
 
         public class EnhancedMovementConfig : ConfigEntry
         {
+            public const string CATEGORY_NAME = "Enhanced Movement";
             
+            public float MaxStamina => _maxStaminaEntry.Value;
+            private ConfigEntry<float> _maxStaminaEntry;
+
+            public float StaminaGain => _staminaGain.Value;
+            private ConfigEntry<float> _staminaGain;
+
+            public float StaminaLoss => _staminaLoss.Value;
+            private ConfigEntry<float> _staminaLoss;
+
+            public EnhancedMovementConfig()
+            {
+                EnabledEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Enabled",
+                    true,
+                    "If enabled, Enhanced Movement will be active"
+                );
+
+                _maxStaminaEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Max Stamina",
+                    100f,
+                    "Max stamina for the player, more stamina means you are able to move more"
+                );
+
+                _staminaGain = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Stamina Gain",
+                    5f,
+                    "The amount of stamina gained whilst inactive"
+
+                );
+            }
         }
         
-        static EHADSConfig()
+        static HADESConfig()
         {
             FallDamage = new FallDamageConfig();
             EnhancedHealth = new EnhancedHealthConfig();

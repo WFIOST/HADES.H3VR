@@ -4,7 +4,7 @@ using FistVR;
 using static EHADS.Common.Logging;
 using PluginInfo = EHADS.Common.PluginInfo;
 
-namespace EHADS.Core
+namespace HADES.Core
 {
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
     public class Plugin : BaseUnityPlugin
@@ -20,7 +20,7 @@ namespace EHADS.Core
 
         private void Start()
         {
-            GM.CurrentPlayerBody.gameObject.AddComponent<EHADS>();
+            GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
             Print($"Loaded EHADS version {PluginInfo.VERSION}!");
         }
     }

@@ -6,18 +6,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using static EHADS.Common.Logging;
 
-namespace EHADS.Core
+namespace HADES.Core
 {
     public class EnhancedHealth : MonoBehaviour
     {
         public float HealthPercentage { get; private set; }
         
         private float CurrentHealth => GM.GetPlayerHealth();
-        private float RegenCap => EHADSConfig.EnhancedHealth.RegenCap;
-        private float RegenDelay => EHADSConfig.EnhancedHealth.RegenDelay;
-        private float RegenSpeed => EHADSConfig.EnhancedHealth.RegenSpeed;
+        private float RegenCap => HADESConfig.EnhancedHealth.RegenCap;
+        private float RegenDelay => HADESConfig.EnhancedHealth.RegenDelay;
+        private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private GameObject HealthBars => EHADS.Player.HealthBar;
+        private GameObject HealthBars => HADES.Player.HealthBar;
         
         private float _initialHealth;
 
@@ -51,7 +51,7 @@ namespace EHADS.Core
                 float curHealth = CurrentHealth;
                 Logging.Debug.Print($"Current health {curHealth}\nInit health {initHealth}");
                 if (curHealth < initHealth) goto regen;
-                EHADS.Player.HealPercent(i);
+                HADES.Player.HealPercent(i);
             }
             
             Logging.Debug.Print("Done Regeneration");

@@ -1,7 +1,7 @@
 ﻿using FistVR;
 using UnityEngine;
 
-namespace EHADS.Items
+namespace HADES.Items
 {
     public class Parachute : PlayerBackPack
     {

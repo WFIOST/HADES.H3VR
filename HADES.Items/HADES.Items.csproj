@@ -7,8 +7,8 @@
         <ProjectGuid>{8D713C18-A044-4C33-AC3F-86F573CDD35E}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>EHADS.Items</RootNamespace>
-        <AssemblyName>EHADS.Items</AssemblyName>
+        <RootNamespace>HADES.Items</RootNamespace>
+        <AssemblyName>HADES.Items</AssemblyName>
         <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
