@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EHADS.H3VR")]
+[assembly: AssemblyTitle("EHADS.Items")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EHADS.H3VR")]
+[assembly: AssemblyProduct("EHADS.Items")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("82E53915-3F55-4F72-A645-17324C181B4F")]
+[assembly: Guid("8D713C18-A044-4C33-AC3F-86F573CDD35E")]
 
 // Version information for an assembly consists of the following four values:
 //

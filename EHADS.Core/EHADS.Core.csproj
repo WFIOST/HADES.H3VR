@@ -7,8 +7,8 @@
         <ProjectGuid>{82E53915-3F55-4F72-A645-17324C181B4F}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>EHADS.H3VR</RootNamespace>
-        <AssemblyName>EHADS.H3VR</AssemblyName>
+        <RootNamespace>EHADS.Core</RootNamespace>
+        <AssemblyName>EHADS.Core</AssemblyName>
         <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
