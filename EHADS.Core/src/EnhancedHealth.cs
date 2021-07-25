@@ -13,9 +13,9 @@ namespace EHADS.Core
         public float HealthPercentage { get; private set; }
         
         private float CurrentHealth => GM.GetPlayerHealth();
-        private float RegenCap => EHADSConfig.EnhancedHealth.RegenCap;
-        private float RegenDelay => EHADSConfig.EnhancedHealth.RegenDelay;
-        private float RegenSpeed => EHADSConfig.EnhancedHealth.RegenSpeed;
+        private float RegenCap => EHADSConfig.EnhancedHealthConfig.RegenCap;
+        private float RegenDelay => EHADSConfig.EnhancedHealthConfig.RegenDelay;
+        private float RegenSpeed => EHADSConfig.EnhancedHealthConfig.RegenSpeed;
 
         private GameObject HealthBars => EHADS.Player.HealthBar;
         

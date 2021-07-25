@@ -5,23 +5,26 @@ namespace EHADS.Core
 {
     public struct EHADSConfig
     {
+        public static FallDamage        FallDamageConfig        { get; }
+        public static EnhancedHealth    EnhancedHealthConfig    { get; }
+
         public class ConfigEntry
         {
-            public static bool Enabled => EnabledEntry.Value;
-            protected static ConfigEntry<bool> EnabledEntry;
+            public bool Enabled => EnabledEntry.Value;
+            protected ConfigEntry<bool> EnabledEntry;
         }
         
         public class FallDamage : ConfigEntry
         {
             private const string CATEGORY_NAME = "Fall Damages";
 
-            public static float FallHeight => _fallHeightEntry.Value;
-            private static ConfigEntry<float> _fallHeightEntry;
+            public float FallHeight => _fallHeightEntry.Value;
+            private readonly ConfigEntry<float> _fallHeightEntry;
 
-            public static float DamageMultiplier => _damageMultiplierEntry.Value;
-            private static ConfigEntry<float> _damageMultiplierEntry;
+            public float DamageMultiplier => _damageMultiplierEntry.Value;
+            private readonly ConfigEntry<float> _damageMultiplierEntry;
 
-            public static void BindConfigEntries()
+            public FallDamage()
             {
                 EnabledEntry = Plugin.Mod.Config.Bind
                 (
@@ -53,16 +56,16 @@ namespace EHADS.Core
         {
             private const string CATEGORY_NAME = "Enhanced Health";
 
-            public static float RegenCap => _regenCapEntry.Value;
-            private static ConfigEntry<float> _regenCapEntry;
+            public float RegenCap => _regenCapEntry.Value;
+            private readonly ConfigEntry<float> _regenCapEntry;
 
-            public static float RegenDelay => _regenDelayEntry.Value;
-            private static ConfigEntry<float> _regenDelayEntry;
+            public float RegenDelay => _regenDelayEntry.Value;
+            private readonly ConfigEntry<float> _regenDelayEntry;
 
-            public static float RegenSpeed => _regenSpeedEntry.Value;
-            private static ConfigEntry<float> _regenSpeedEntry;
+            public float RegenSpeed => _regenSpeedEntry.Value;
+            private readonly ConfigEntry<float> _regenSpeedEntry;
 
-            public static void BindConfigEntries()
+            public EnhancedHealth()
             {
                 EnabledEntry = Plugin.Mod.Config.Bind
                 (
@@ -97,11 +100,11 @@ namespace EHADS.Core
                 );
             }
         }
-
+        
         static EHADSConfig()
         {
-            FallDamage.BindConfigEntries();
-            EnhancedHealth.BindConfigEntries();
+            FallDamageConfig = new FallDamage();
+            EnhancedHealthConfig = new EnhancedHealth();
         }
     }
 }

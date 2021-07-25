@@ -8,6 +8,10 @@ namespace EHADS.Core
     {
         public float maxStamina;
         public float currentStamina;
-        
+
+        private void Start()
+        {
+            
+        }
     }
 }
