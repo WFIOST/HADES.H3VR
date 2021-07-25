@@ -34,7 +34,7 @@ namespace EHADS.Core
         {
             float damage = 0;
             // * 0.02 is effectively / 50 but mult because muh optimization
-            var effectiveVelocity = _velocityDifference + EHADSConfig.FallDamage.FallHeight * 0.02f;
+            float effectiveVelocity = _velocityDifference + EHADSConfig.FallDamage.FallHeight * 0.02f;
 
             //if EV is less than 0, it means that the velocity was negative enough that the VDT could not
             //bring it back up to positive. Also, the velocity being negative means its slowing down.

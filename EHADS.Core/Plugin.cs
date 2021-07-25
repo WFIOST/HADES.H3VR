@@ -23,9 +23,5 @@ namespace EHADS.Core
             GM.CurrentPlayerBody.gameObject.AddComponent<EHADS>();
             Print($"Loaded EHADS version {PluginInfo.VERSION}!");
         }
-
-        private void Update()
-        {
-        }
     }
 }

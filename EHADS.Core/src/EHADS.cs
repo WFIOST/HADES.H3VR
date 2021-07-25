@@ -9,14 +9,16 @@ namespace EHADS.Core
     public class EHADS : MonoBehaviour
     {
         public static FVRPlayerBody Player => GM.CurrentPlayerBody;
-        
-        public FallDamage       fallDamage;
-        public EnhancedHealth   enhancedHealth;
+
+        public static FallDamage       FallDamage;
+        public static EnhancedHealth   EnhancedHealth;
+        public static EnhancedMovement EnhancedMovement;
         private void Awake()
         {
             Print("Injected EHADS into player");
-            fallDamage = gameObject.AddComponent<FallDamage>();
-            enhancedHealth = gameObject.AddComponent<EnhancedHealth>();
+            FallDamage = gameObject.AddComponent<FallDamage>();
+            EnhancedHealth = gameObject.AddComponent<EnhancedHealth>();
+            EnhancedMovement = gameObject.AddComponent<EnhancedMovement>();
         }
     }
 }

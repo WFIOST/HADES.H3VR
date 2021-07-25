@@ -12,17 +12,13 @@ namespace EHADS.Common
 
     public static class Logging
     {
-        public static void Print(object msg, LogLevel level = LogLevel.Info)
-        {
-            Plugin.ConsoleLogger.Log(level, msg);
-        }
+        public static void Print(object msg, LogLevel level = LogLevel.Info) => Plugin.ConsoleLogger.Log(level, msg);
+        
 
         public static class Debug
         {
-            public static void Print(object msg)
-            {
-                Plugin.ConsoleLogger.Log(LogLevel.Debug, msg);
-            }
+            public static void Print(object msg) => Plugin.ConsoleLogger.Log(LogLevel.Debug, msg);
+            
         }
     }
 
