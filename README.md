@@ -18,11 +18,6 @@ Enhanced Health and Damage System (EHADS) for H3VR, based of the Ravenfield mod 
         - Your stamina bar will slowly run out the more you move
         - What you are carrying will also effect this
         - No stamina? Slow movement
-    
-- Hunger
-    - Moving makes you hungry! Eat foods to increase stamina and health regeneration
-    - Carry around foods with different calories and effects
-    - Make sure to drink lots of liquids!
 
 ## Contributing
 
