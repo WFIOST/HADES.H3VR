@@ -1,4 +1,5 @@
 using BepInEx.Logging;
+using EHADS.Core;
 
 namespace EHADS.Common
 {
@@ -13,14 +14,14 @@ namespace EHADS.Common
     {
         public static void Print(object msg, LogLevel level = LogLevel.Info)
         {
-            Core.Plugin.ConsoleLogger.Log(level, msg);
+            Plugin.ConsoleLogger.Log(level, msg);
         }
 
         public static class Debug
         {
             public static void Print(object msg)
             {
-                Core.Plugin.ConsoleLogger.Log(LogLevel.Debug, msg);
+                Plugin.ConsoleLogger.Log(LogLevel.Debug, msg);
             }
         }
     }

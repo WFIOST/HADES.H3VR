@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Logging;
-using EHADS.Common;
 using FistVR;
-using UnityEngine;
 using static EHADS.Common.Logging;
 using PluginInfo = EHADS.Common.PluginInfo;
 
@@ -13,6 +10,7 @@ namespace EHADS.Core
     public class Plugin : BaseUnityPlugin
     {
         public static ManualLogSource ConsoleLogger;
+
         public Plugin()
         {
             ConsoleLogger = Logger;
@@ -28,7 +26,6 @@ namespace EHADS.Core
 
         private void Update()
         {
-
         }
     }
 }
