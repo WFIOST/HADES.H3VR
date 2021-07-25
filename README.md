@@ -1,6 +1,6 @@
-# EHADS.H3VR
+# HADES.H3VR
 
-Enhanced Health and Damage System (EHADS) for H3VR, based of the Ravenfield mod with the same name
+Health and Damage Enhanced System (HADES) for H3VR, based off the Ravenfield mod EHADS 2
 
 ## Planned Features
 
