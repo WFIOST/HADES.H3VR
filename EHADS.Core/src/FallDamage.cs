@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EHADS.Common;
 using FistVR;
@@ -9,9 +10,13 @@ namespace EHADS.Core
     public class FallDamage : MonoBehaviour
     {
         private float _currentPos;
-
         private float _previousPos;
         private float _velocity;
+
+        private void Start()
+        {
+            if (!EHADSConfig.FallDamage.Enabled) Print("Injected FallDamage into player");
+        }
 
         private void Update()
         {

@@ -1,87 +1,107 @@
+using System.Collections.Generic;
 using BepInEx.Configuration;
 
 namespace EHADS.Core
 {
     public struct EHADSConfig
     {
-
-        public struct FallDamage
+        public class ConfigEntry
         {
-            public const string CATEGORY_NAME = "Fall Damages";
-
             public static bool Enabled => EnabledEntry.Value;
-            public static ConfigEntry<bool> EnabledEntry;
+            protected static ConfigEntry<bool> EnabledEntry;
+        }
+        
+        public class FallDamage : ConfigEntry
+        {
+            private const string CATEGORY_NAME = "Fall Damages";
 
-            public static float FallHeight => FallHeightEntry.Value;
-            public static ConfigEntry<float> FallHeightEntry;
+            public static float FallHeight => _fallHeightEntry.Value;
+            private static ConfigEntry<float> _fallHeightEntry;
 
-            public static float DamageMultiplier => DamageMultiplierEntry.Value;
-            public static ConfigEntry<float> DamageMultiplierEntry;
+            public static float DamageMultiplier => _damageMultiplierEntry.Value;
+            private static ConfigEntry<float> _damageMultiplierEntry;
+
+            public static void BindConfigEntries()
+            {
+                EnabledEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Enabled",
+                    true,
+                    "If enabled, the player will take Fall Damage based off how far they fall from (configurable)"
+                );
+
+                _fallHeightEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Height",
+                    20f,
+                    "How far you need to fall to take fall damage"
+                );
+
+                _damageMultiplierEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Multiplier",
+                    1.5f,
+                    "The multiplier is multiplied by your velocity (distance traveled between 2 points in 1 second) and is what damages you"
+                );
+            }
         }
 
-        public struct EnhancedHealth
+        public class EnhancedHealth : ConfigEntry
         {
-            public const string CATEGORY_NAME = "Enhanced Health";
+            private const string CATEGORY_NAME = "Enhanced Health";
 
-            public static bool Enabled => EnabledEntry.Value;
-            public static ConfigEntry<bool> EnabledEntry;
+            public static float RegenCap => _regenCapEntry.Value;
+            private static ConfigEntry<float> _regenCapEntry;
 
-            public static float RegenCap => RegenCapEntry.Value;
-            public static ConfigEntry<float> RegenCapEntry;
+            public static float RegenDelay => _regenDelayEntry.Value;
+            private static ConfigEntry<float> _regenDelayEntry;
 
-            public static float RegenDelay => RegenDelayEntry.Value;
-            public static ConfigEntry<float> RegenDelayEntry;
+            public static float RegenSpeed => _regenSpeedEntry.Value;
+            private static ConfigEntry<float> _regenSpeedEntry;
 
-            public static float RegenSpeed => RegenSpeedEntry.Value;
-            public static ConfigEntry<float> RegenSpeedEntry;
+            public static void BindConfigEntries()
+            {
+                EnabledEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Enabled",
+                    true,
+                    "If enabled, Enhanced Health will be active."
+                );
+
+                _regenCapEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Regeneration Cap",
+                    0.10f,
+                    "Limit to how much you may regenerate (Note: this is a percentage so 1 is 100%!)"
+                );
+
+                _regenDelayEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Regeneration Delay",
+                    10f,
+                    "Number of seconds before the regeneration will start"
+                );
+
+                _regenSpeedEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Regeneration Speed",
+                    5f,
+                    "How long does it take to regenerate to the regeneration cap"
+                );
+            }
         }
 
         static EHADSConfig()
         {
-            FallDamage.EnabledEntry = Plugin.Mod.Config.Bind
-            (
-                FallDamage.CATEGORY_NAME,
-                "Enabled",
-                true,
-                "If enabled, the player will take Fall Damage based off how far they fall from (configurable)"
-            );
-
-            FallDamage.FallHeightEntry = Plugin.Mod.Config.Bind
-            (
-                FallDamage.CATEGORY_NAME,
-                "Height",
-                20f,
-                "How far you need to fall to take fall damage"
-            );
-
-            FallDamage.DamageMultiplierEntry = Plugin.Mod.Config.Bind
-            (
-                FallDamage.CATEGORY_NAME,
-                "Multiplier",
-                1.5f,
-                "The multiplier is multiplied by your velocity (distance traveled between 2 points in 1 second) and is what damages you"
-            );
-
-
-            EnhancedHealth.EnabledEntry = Plugin.Mod.Config.Bind
-            (
-                EnhancedHealth.CATEGORY_NAME,
-                "Enabled",
-                true,
-                "If enabled, Enhanced Health will be active."
-            );
-
-            EnhancedHealth.RegenCapEntry = Plugin.Mod.Config.Bind
-            (
-                EnhancedHealth.CATEGORY_NAME,
-                "Regeneration Cap",
-                0.10f,
-                "Limit to how much you may regenerate (Note: this is a percentage so 1 is 100%!)"
-            );
-
-            EnhancedHealth.RegenDelayEntry = Plugin.Mod.Config.Bind
-            (
-            );
+            FallDamage.BindConfigEntries();
+            EnhancedHealth.BindConfigEntries();
         }
     }
 }
