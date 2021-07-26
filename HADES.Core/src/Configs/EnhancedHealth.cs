@@ -12,8 +12,8 @@ namespace HADES.Configs
 
         public EnhancedHealthConfig()
         {
-            base.CategoryName = CATEGORY_NAME;
-            
+            CategoryName = CATEGORY_NAME;
+
             EnabledEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,

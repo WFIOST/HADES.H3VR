@@ -1,4 +1,3 @@
-using System;
 using FistVR;
 using HADES.Configs;
 using HADES.Utilities;
@@ -11,6 +10,10 @@ namespace HADES.Core
         protected readonly TConfigEntry Config = new TConfigEntry();
         protected FVRPlayerBody Player => GM.CurrentPlayerBody;
         protected FVRMovementManager MovementManager => GM.CurrentMovementManager;
-        protected void Print(object message) => Logging.Print($"({Config.CategoryName}) - {message}");
+
+        protected void Print(object message)
+        {
+            Logging.Print($"({Config.CategoryName}) - {message}");
+        }
     }
 }
