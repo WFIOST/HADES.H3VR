@@ -7,13 +7,14 @@ namespace HADES.Core
 {
     public class EnhancedMovement : MonoBehaviour
     {
+        private HADES _hadesSystem;
         public float Stamina { get; private set; }
 
         public float Weight
         {
             get
             {
-                var qbSlots = HADES.Player.QuickbeltSlots;
+                var qbSlots = _hadesSystem.Player.QuickbeltSlots;
 
                 var weight = 0.0f;
 
@@ -59,7 +60,7 @@ namespace HADES.Core
         {
             if (!HADESConfig.EnhancedMovement.Enabled) return;
 
-            float speed = HADES.Player.GetBodyMovementSpeed();
+            float speed = _hadesSystem.Player.GetBodyMovementSpeed();
             if (speed < 10f) return;
             GM.CurrentMovementManager.SlidingSpeed -= Stamina / 100;
         }

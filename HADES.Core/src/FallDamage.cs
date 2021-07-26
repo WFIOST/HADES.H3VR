@@ -7,6 +7,7 @@ namespace HADES.Core
 {
     public class FallDamage : MonoBehaviour
     {
+        private HADES _hadesSystem;
         private Vector3 _currentPos;
         private float _currentVelocity;
         private Vector3 _previousPos;
@@ -28,7 +29,7 @@ namespace HADES.Core
             var fallDmg = CalculateFallDamage();
             Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
             if (fallDmg.Item1 >= 1)
-                HADES.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
+                _hadesSystem.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
         }
 
         public void FixedUpdate()
@@ -58,7 +59,7 @@ namespace HADES.Core
             //set prev pos
             _previousPos = _currentPos;
             //probably not a good idea to hard-code the idea that there's only ever one player.
-            _currentPos = HADES.Player.transform.position;
+            _currentPos = _hadesSystem.Player.transform.position;
 
             //get velocity
             _previousVelocity = _currentVelocity;
