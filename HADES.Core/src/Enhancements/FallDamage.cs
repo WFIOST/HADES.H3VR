@@ -8,9 +8,9 @@ namespace HADES.Core
 {
     public class FallDamage : HADESEnhancement<FallDamageConfig>
     {
-        private HADES _hadesSystem;
         private Vector3 _currentPos;
         private float _currentVelocity;
+        private HADES _hadesSystem;
         private Vector3 _previousPos;
         private float _previousVelocity;
         private float _velocityDifference;
@@ -18,10 +18,7 @@ namespace HADES.Core
         private void Start()
         {
             _hadesSystem = GetComponent<HADES>();
-            if (Config.Enabled)
-            {
-                Print("Injected FallDamage into player");
-            }
+            if (Config.Enabled) Print("Injected FallDamage into player");
         }
 
         private void Update()
