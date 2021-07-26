@@ -8,7 +8,6 @@ namespace HADES.Utilities
 {
     public static class Common
     {
-        public static FVRPlayerBody Player => GM.CurrentPlayerBody;
         public static readonly WaitForSeconds WAIT_A_SEX = new WaitForSeconds(1);
     }
     

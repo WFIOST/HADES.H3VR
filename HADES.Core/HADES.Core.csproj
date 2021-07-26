@@ -90,6 +90,7 @@
         <Compile Include="src\EnhancedMovement.cs" />
         <Compile Include="src\FallDamage.cs" />
         <Compile Include="src\HADESConfig.cs" />
+        <Compile Include="src\HADESEnhancement.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

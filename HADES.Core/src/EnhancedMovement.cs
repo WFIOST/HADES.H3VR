@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace HADES.Core
 {
-    public class EnhancedMovement : MonoBehaviour
+    public class EnhancedMovement : HADESEnhancement
     {
         public float Stamina { get; private set; }
         public float StaminaPercentage { get; private set; }
@@ -15,7 +15,7 @@ namespace HADES.Core
         {
             get
             {
-                var qbSlots = Common.Player.QuickbeltSlots;
+                var qbSlots = Player.QuickbeltSlots;
 
                 var weight = 0.0f;
 
@@ -49,7 +49,7 @@ namespace HADES.Core
         private float MaxStamina => HADESConfig.EnhancedMovement.MaxStamina;
         private float StaminaGain => HADESConfig.EnhancedMovement.StaminaGain;
         private float StaminaLoss => HADESConfig.EnhancedMovement.StaminaLoss;
-        private float PlayerSpeed => Common.Player.GetBodyMovementSpeed();
+        private float PlayerSpeed => Player.GetBodyMovementSpeed();
         
         private void Start()
         {
@@ -61,7 +61,7 @@ namespace HADES.Core
         {
             if (!HADESConfig.EnhancedMovement.Enabled) return;
 
-            float speed = Common.Player.GetBodyMovementSpeed();
+            float speed = Player.GetBodyMovementSpeed();
             if (speed < HADESConfig.EnhancedMovement.StaminaLossStartSpeed) return;
             StartCoroutine(DrainStamina());
         }

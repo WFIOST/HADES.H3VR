@@ -6,7 +6,7 @@ using static HADES.Utilities.Logging;
 
 namespace HADES.Core
 {
-    public class EnhancedHealth : MonoBehaviour
+    public class EnhancedHealth : HADESEnhancement
     {
         public float HealthPercentage { get; private set; }
 
@@ -15,7 +15,7 @@ namespace HADES.Core
         private float RegenDelay => HADESConfig.EnhancedHealth.RegenDelay;
         private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private GameObject HealthBars => Common.Player.HealthBar;
+        private GameObject HealthBars => Player.HealthBar;
         
         private float _initialHealth;
         
@@ -54,7 +54,7 @@ namespace HADES.Core
                 //then restart the loop with the cooldown
                 if (curHealth < initHealth) goto regen;
                 //TODO: make the player heal in n intervals until the regen cap is reached
-                Common.Player.HealPercent(i);
+                Player.HealPercent(i);
             }
 
             Logging.Debug.Print("Done Regeneration");
