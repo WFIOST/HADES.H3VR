@@ -1,15 +1,13 @@
 using System.Collections;
 using FistVR;
-using HADES.Common;
+using HADES.Utilities;
 using UnityEngine;
-using static HADES.Common.Logging;
+using static HADES.Utilities.Logging;
 
 namespace HADES.Core
 {
     public class EnhancedHealth : MonoBehaviour
     {
-        private HADES _hadesSystem;
-        private float _initialHealth;
         public float HealthPercentage { get; private set; }
 
         private float CurrentHealth => GM.GetPlayerHealth();
@@ -17,17 +15,20 @@ namespace HADES.Core
         private float RegenDelay => HADESConfig.EnhancedHealth.RegenDelay;
         private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private GameObject HealthBars => _hadesSystem.Player.HealthBar;
-
+        private GameObject HealthBars => Common.Player.HealthBar;
+        
+        private float _initialHealth;
+        
         private void Start()
         {
-            _hadesSystem = GetComponent<HADES>();
+            if (!HADESConfig.EnhancedHealth.Enabled) return;
             Print("Injected EnhancedHealth into player");
             _initialHealth = GM.GetPlayerHealth();
         }
 
         private void Update()
         {
+            if (!HADESConfig.EnhancedHealth.Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
 
@@ -47,7 +48,7 @@ namespace HADES.Core
                 float curHealth = CurrentHealth;
                 Logging.Debug.Print($"Current health {curHealth}\nInit health {initHealth}");
                 if (curHealth < initHealth) goto regen;
-                _hadesSystem.Player.HealPercent(i);
+                Common.Player.HealPercent(i);
             }
 
             Logging.Debug.Print("Done Regeneration");

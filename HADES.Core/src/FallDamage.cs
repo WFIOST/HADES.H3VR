@@ -1,7 +1,7 @@
 using FistVR;
-using HADES.Common;
+using HADES.Utilities;
 using UnityEngine;
-using static HADES.Common.Logging;
+using static HADES.Utilities.Logging;
 
 namespace HADES.Core
 {
