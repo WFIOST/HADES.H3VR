@@ -15,7 +15,10 @@ namespace HADES.Core
 
         private void Start()
         {
-            if (!HADESConfig.FallDamage.Enabled) Print("Injected FallDamage into player");
+            if (HADESConfig.FallDamage.Enabled)
+            {
+                Print("Injected FallDamage into player");
+            }
         }
 
         private void Update()
