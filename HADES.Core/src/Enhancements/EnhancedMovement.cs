@@ -53,8 +53,44 @@ namespace HADES.Core
         
         private void Start()
         {
+            if (!HADESConfig.EnhancedMovement.Enabled) return;
             Stamina = MaxStamina;
             StaminaPercentage = MaxStamina / Stamina * 100;
+            
+            //Reimplementation of jump for our needs
+            On.FistVR.FVRMovementManager.Jump += (_, self) =>
+            {
+                if ((self.Mode != FVRMovementManager.MovementMode.Armswinger || self.m_armSwingerGrounded) 
+                    && (self.Mode != FVRMovementManager.MovementMode.SingleTwoAxis 
+                        && self.Mode != FVRMovementManager.MovementMode.TwinStick || self.m_twoAxisGrounded))
+                {
+                    self.DelayGround(0.1f);
+                    float num = GM.Options.SimulationOptions.PlayerGravityMode switch
+                    {
+                        SimulationOptions.GravityMode.Realistic => HADESConfig.EnhancedMovement.RealisticGravityJumpForce,
+                        SimulationOptions.GravityMode.Playful => HADESConfig.EnhancedMovement.PlayfulGravityJumpForce,
+                        SimulationOptions.GravityMode.OnTheMoon => HADESConfig.EnhancedMovement.MoonGravityJumpForce,
+                        SimulationOptions.GravityMode.None => HADESConfig.EnhancedMovement.NoGravityJumpForce,
+                        _ => 0f
+                    };
+                    num *= 0.65f;
+                    switch (self.Mode)
+                    {
+                        case FVRMovementManager.MovementMode.Armswinger:
+                            self.DelayGround(0.25f);
+                            self.m_armSwingerVelocity.y = Mathf.Clamp(self.m_armSwingerVelocity.y, 0f, self.m_armSwingerVelocity.y);
+                            self.m_armSwingerVelocity.y = num;
+                            self.m_armSwingerGrounded = false;
+                            break;
+                        case FVRMovementManager.MovementMode.SingleTwoAxis or FVRMovementManager.MovementMode.TwinStick:
+                            self.DelayGround(0.25f);
+                            self.m_twoAxisVelocity.y = Mathf.Clamp(self.m_twoAxisVelocity.y, 0f, self.m_twoAxisVelocity.y);
+                            self.m_twoAxisVelocity.y = num;
+                            self.m_twoAxisGrounded = false;
+                            break;
+                    }
+                }
+            };
         }
 
         private void Update()
