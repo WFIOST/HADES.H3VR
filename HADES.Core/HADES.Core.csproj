@@ -44,6 +44,9 @@
           <HintPath>..\packages\BepInEx.BaseLib.5.4.11\lib\net35\BepInEx.dll</HintPath>
           <Private>True</Private>
         </Reference>
+        <Reference Include="MMHOOK_Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\libs\MMHOOK_Assembly-CSharp.dll</HintPath>
+        </Reference>
         <Reference Include="Mono.Cecil, Version=0.10.4.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
           <HintPath>..\packages\Mono.Cecil.0.10.4\lib\net35\Mono.Cecil.dll</HintPath>
           <Private>True</Private>
