@@ -9,6 +9,8 @@ namespace HADES.Configs
 
         public EnhancedMovementConfig()
         {
+            base.CategoryName = CATEGORY_NAME;
+            
             EnabledEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
