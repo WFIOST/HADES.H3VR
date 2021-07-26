@@ -1,11 +1,12 @@
 using FistVR;
+using HADES.Config;
 using HADES.Utilities;
 using UnityEngine;
 using static HADES.Utilities.Logging;
 
 namespace HADES.Core
 {
-    public class FallDamage : MonoBehaviour
+    public class FallDamage : HADESEnhancement<FallDamageConfig>
     {
         private HADES _hadesSystem;
         private Vector3 _currentPos;
@@ -17,7 +18,7 @@ namespace HADES.Core
         private void Start()
         {
             _hadesSystem = GetComponent<HADES>();
-            if (HADESConfig.FallDamage.Enabled)
+            if (Config.Enabled)
             {
                 Print("Injected FallDamage into player");
             }
@@ -25,7 +26,7 @@ namespace HADES.Core
 
         private void Update()
         {
-            if (GM.IsDead() || !HADESConfig.FallDamage.Enabled) return;
+            if (GM.IsDead() || !Config.Enabled) return;
 
             var fallDmg = CalculateFallDamage();
             Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
@@ -56,12 +57,12 @@ namespace HADES.Core
         {
             float damage = 0;
             // * 0.02 is effectively / 50 but mult because muh optimization
-            float effectiveVelocity = _velocityDifference + HADESConfig.FallDamage.FallHeight * 0.02f;
+            float effectiveVelocity = _velocityDifference + Config.FallHeight * 0.02f;
 
             //if EV is less than 0, it means that the velocity was negative enough that the VDT could not
             //bring it back up to positive. Also, the velocity being negative means its slowing down.
             //The VDT is to prevent coming from a run to a stop doesnt hurt you lol
-            if (effectiveVelocity < 0) damage = effectiveVelocity * HADESConfig.FallDamage.FallHeight;
+            if (effectiveVelocity < 0) damage = effectiveVelocity * Config.FallHeight;
             return new Tuple<float, float>(damage, effectiveVelocity);
         }
     }

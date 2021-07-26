@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Linq;
 using FistVR;
+using HADES.Config;
 using HADES.Utilities;
 using UnityEngine;
 
 namespace HADES.Core
 {
-    public class EnhancedMovement : HADESEnhancement
+    public class EnhancedMovement : HADESEnhancement<EnhancedMovementConfig>
     {
         public float Stamina { get; private set; }
         public float StaminaPercentage { get; private set; }
@@ -24,19 +25,19 @@ namespace HADES.Core
                     FVRPhysicalObject obj = slot.CurObject;
 
                     if (slot.Type == FVRQuickBeltSlot.QuickbeltSlotType.Backpack) 
-                        weight += HADESConfig.EnhancedMovement.BackpackWeightModifier;
+                        weight += Config.BackpackWeightModifier;
 
                     weight += obj.Size switch
                     {
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Small => HADESConfig.EnhancedMovement
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Small => Config
                             .SmallObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Medium => HADESConfig.EnhancedMovement
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Medium => Config
                             .MediumObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Large => HADESConfig.EnhancedMovement
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Large => Config
                             .LargeObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Massive => HADESConfig.EnhancedMovement
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Massive => Config
                             .MassiveObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.CantCarryBig => HADESConfig.EnhancedMovement
+                        FVRPhysicalObject.FVRPhysicalObjectSize.CantCarryBig => Config
                             .CCBWeightModifer,
                         _ => throw new ArgumentOutOfRangeException()
                     };
@@ -46,14 +47,14 @@ namespace HADES.Core
             }
         }
 
-        private float MaxStamina => HADESConfig.EnhancedMovement.MaxStamina;
-        private float StaminaGain => HADESConfig.EnhancedMovement.StaminaGain;
-        private float StaminaLoss => HADESConfig.EnhancedMovement.StaminaLoss;
+        private float MaxStamina => Config.MaxStamina;
+        private float StaminaGain => Config.StaminaGain;
+        private float StaminaLoss => Config.StaminaLoss;
         private float PlayerSpeed => Player.GetBodyMovementSpeed();
         
         private void Start()
         {
-            if (!HADESConfig.EnhancedMovement.Enabled) return;
+            if (!Config.Enabled) return;
             Stamina = MaxStamina;
             StaminaPercentage = MaxStamina / Stamina * 100;
             
@@ -67,10 +68,10 @@ namespace HADES.Core
                     self.DelayGround(0.1f);
                     float num = GM.Options.SimulationOptions.PlayerGravityMode switch
                     {
-                        SimulationOptions.GravityMode.Realistic => HADESConfig.EnhancedMovement.RealisticGravityJumpForce,
-                        SimulationOptions.GravityMode.Playful => HADESConfig.EnhancedMovement.PlayfulGravityJumpForce,
-                        SimulationOptions.GravityMode.OnTheMoon => HADESConfig.EnhancedMovement.MoonGravityJumpForce,
-                        SimulationOptions.GravityMode.None => HADESConfig.EnhancedMovement.NoGravityJumpForce,
+                        SimulationOptions.GravityMode.Realistic => Config.RealisticGravityJumpForce,
+                        SimulationOptions.GravityMode.Playful => Config.PlayfulGravityJumpForce,
+                        SimulationOptions.GravityMode.OnTheMoon => Config.MoonGravityJumpForce,
+                        SimulationOptions.GravityMode.None => Config.NoGravityJumpForce,
                         _ => 0f
                     };
                     num *= 0.65f;
@@ -92,35 +93,15 @@ namespace HADES.Core
                 }
             };
         }
+        
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (!HADESConfig.EnhancedMovement.Enabled) return;
+            if (!Config.Enabled) return;
 
-            float speed = Player.GetBodyMovementSpeed();
-            if (speed < HADESConfig.EnhancedMovement.StaminaLossStartSpeed) return;
-            StartCoroutine(DrainStamina());
-        }
-
-        private IEnumerator DrainStamina()
-        {
-            StaminaPercentage = Stamina / MaxStamina * 100;
-            
-            /* Burn through the stamina, we use StaminaLoss in the loop because
-            that is how many seconds are to be elapsed to completely drain the stamina.
-            How much you are carrying also is a factor, so we subtract the weight from the
-            number of seconds that are to be elapsed */
-            for (float i = 0; 
-                i < StaminaLoss - Weight;  /* This is how long (in seconds) it takes to drain all of the stamina */
-                i++)
+            if (PlayerSpeed < Config.StaminaLossStartSpeed)
             {
-                //If the player isn't going over the threshold, stop the function
-                if (PlayerSpeed < HADESConfig.EnhancedMovement.StaminaLossStartSpeed || Stamina <= 0)
-                    yield break;
                 
-                
-                
-                yield return Common.WAIT_A_SEX;
             }
         }
     }

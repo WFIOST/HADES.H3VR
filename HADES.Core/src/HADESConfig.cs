@@ -1,14 +1,9 @@
 using BepInEx.Configuration;
+using HADES.Core;
 
-namespace HADES.Core
+namespace HADES.Config
 {
-    public struct HADESConfig
-    {
-        public static FallDamageConfig FallDamage { get; }
-        public static EnhancedHealthConfig EnhancedHealth { get; }
-        public static EnhancedMovementConfig EnhancedMovement { get; }
-
-        public class ConfigEntry
+            public class ConfigEntry
         {
             protected ConfigEntry<bool> EnabledEntry;
             public bool Enabled => EnabledEntry.Value;
@@ -324,11 +319,4 @@ namespace HADES.Core
             #endregion
         }
 
-        static HADESConfig()
-        {
-            FallDamage = new FallDamageConfig();
-            EnhancedHealth = new EnhancedHealthConfig();
-            EnhancedMovement = new EnhancedMovementConfig();
-        }
-    }
 }
