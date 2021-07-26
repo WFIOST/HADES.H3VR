@@ -1,5 +1,6 @@
 ﻿using System;
 using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using FistVR;
 using static HADES.Utilities.Logging;
@@ -18,6 +19,11 @@ namespace HADES.Core
             Print($"Loading EHADS version {PluginInfo.VERSION}");
         }
 
+        public static ConfigEntry<T> BindConfig<T>(string  section, 
+                                            string  key,
+                                            T       defaultValue,
+                                            string  description) 
+            => Mod.Config.Bind(section, key, defaultValue, description);
 
         private void Start()
         {
