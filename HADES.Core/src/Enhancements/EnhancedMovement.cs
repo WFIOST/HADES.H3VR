@@ -70,12 +70,12 @@ namespace HADES.Core
         {
             StaminaPercentage = Stamina / MaxStamina * 100;
             
-            //Burn through the stamina, we use StaminaLoss in the loop because
-            //that is how many seconds are to be elapsed to completely drain the stamina.
-            //How much you are carrying also is a factor, so we subtract the weight from the
-            //number of seconds that are to be elapsed
+            /* Burn through the stamina, we use StaminaLoss in the loop because
+            that is how many seconds are to be elapsed to completely drain the stamina.
+            How much you are carrying also is a factor, so we subtract the weight from the
+            number of seconds that are to be elapsed */
             for (float i = 0; 
-                i < StaminaLoss - Weight;  //This is how long (in seconds) it takes to drain all of the stamina
+                i < StaminaLoss - Weight;  /* This is how long (in seconds) it takes to drain all of the stamina */
                 i++)
             {
                 //If the player isn't going over the threshold, stop the function
