@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using FistVR;
 using HADES.Utilities;
@@ -11,14 +12,13 @@ namespace HADES.Core
         public float HealthPercentage { get; private set; }
 
         private float CurrentHealth => GM.GetPlayerHealth();
-        private float RegenCap => HADESConfig.EnhancedHealth.RegenCap;
-        private float RegenDelay => HADESConfig.EnhancedHealth.RegenDelay;
         private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private GameObject HealthBars => Player.HealthBar;
-        
-        private float _initialHealth;
-        
+        private float RegenToGo;
+        private float currentRegenDelayLength;
+        private float healthMonitor;
+
+        private GameObject HealthBars => _hadesSystem.Player.HealthBar;
         private void Start()
         {
             if (!HADESConfig.EnhancedHealth.Enabled) return;
@@ -31,33 +31,46 @@ namespace HADES.Core
             if (!HADESConfig.EnhancedHealth.Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
-
-            if (HealthPercentage < RegenCap) StartCoroutine(Regenerate());
         }
-
-        private IEnumerator Regenerate()
+        
+        private void FixedUpdate()
         {
-            float initHealth = CurrentHealth; //Get the health at the execution of the function
+            //if (HealthPercentage < RegenCap) Regenerate();
             
-            regen:
-            yield return new WaitForSeconds(RegenDelay); //Wait the delay out
-
-            Logging.Debug.Print("Regenerating...");
-            
-            //Loop through until the regen cap is reached, i is iterated by the regeneration speed
-            for (float i = 0; i < RegenCap; i += RegenSpeed / 10) 
+            RegenerationHandler();
+        }
+        
+        //this is the public entry-way to regenerate the player
+        public void RegeneratePlayerHP(float amt)
+        {
+            RegenToGo += amt;
+        }
+        
+        //this is the bit that actually regenerates your hp
+        private void RegenerationHandler()
+        {
+            //if player is below RegenCap
+            if (_hadesSystem.Player.GetPlayerHealth() <
+                HADESConfig.EnhancedHealth.RegenCap * _hadesSystem.Player.GetMaxHealthPlayerRaw())
             {
-                //The health before healing
-                float curHealth = CurrentHealth;
-                Logging.Debug.Print($"Current health {curHealth}\nInit health {initHealth}");
-                //If the player was damaged (The current health before healing is less than the health before starting regeneration),
-                //then restart the loop with the cooldown
-                if (curHealth < initHealth) goto regen;
-                //TODO: make the player heal in n intervals until the regen cap is reached
-                Player.HealPercent(i);
+                //if the delay time's up
+                if(currentRegenDelayLength >= HADESConfig.EnhancedHealth.RegenDelay * 50)
+                {
+                    //if the player's hp is lower than what it was, assume damage taken, lower hp
+                    if (_hadesSystem.Player.GetPlayerHealth() < healthMonitor)
+                    {
+                        currentRegenDelayLength = 0;
+                    }
+                    
+                    //go add player hp
+                    _hadesSystem.Player.HealPercent(HADESConfig.EnhancedHealth.RegenSpeed * 0.02f);
+                } else currentRegenDelayLength++; //count down (up?) if the delay time is not finished
             }
-
-            Logging.Debug.Print("Done Regeneration");
+            else
+            {
+                currentRegenDelayLength = 0;
+            }
+            healthMonitor = _hadesSystem.Player.GetPlayerHealth();
         }
     }
 }

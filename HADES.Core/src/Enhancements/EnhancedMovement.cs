@@ -18,7 +18,7 @@ namespace HADES.Core
                 var qbSlots = Player.QuickbeltSlots;
 
                 var weight = 0.0f;
-
+                
                 foreach (FVRQuickBeltSlot slot in qbSlots.Where(slot => slot.CurObject != null))
                 {
                     FVRPhysicalObject obj = slot.CurObject;
