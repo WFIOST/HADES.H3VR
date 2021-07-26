@@ -14,11 +14,12 @@ namespace HADES.Core
         private float CurrentHealth => GM.GetPlayerHealth();
         private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private float RegenToGo;
-        private float currentRegenDelayLength;
-        private float healthMonitor;
+        private float _regenToGo;
+        private float _currentRegenDelayLength;
+        private float _healthMonitor;
+        private float _initialHealth;
 
-        private GameObject HealthBars => _hadesSystem.Player.HealthBar;
+        private GameObject HealthBars => Player.HealthBar;
         private void Start()
         {
             if (!HADESConfig.EnhancedHealth.Enabled) return;
@@ -43,34 +44,34 @@ namespace HADES.Core
         //this is the public entry-way to regenerate the player
         public void RegeneratePlayerHP(float amt)
         {
-            RegenToGo += amt;
+            _regenToGo += amt;
         }
         
         //this is the bit that actually regenerates your hp
         private void RegenerationHandler()
         {
             //if player is below RegenCap
-            if (_hadesSystem.Player.GetPlayerHealth() <
-                HADESConfig.EnhancedHealth.RegenCap * _hadesSystem.Player.GetMaxHealthPlayerRaw())
+            if (Player.GetPlayerHealth() <
+                HADESConfig.EnhancedHealth.RegenCap * Player.GetMaxHealthPlayerRaw())
             {
                 //if the delay time's up
-                if(currentRegenDelayLength >= HADESConfig.EnhancedHealth.RegenDelay * 50)
+                if(_currentRegenDelayLength >= HADESConfig.EnhancedHealth.RegenDelay * 50)
                 {
                     //if the player's hp is lower than what it was, assume damage taken, lower hp
-                    if (_hadesSystem.Player.GetPlayerHealth() < healthMonitor)
+                    if (Player.GetPlayerHealth() < _healthMonitor)
                     {
-                        currentRegenDelayLength = 0;
+                        _currentRegenDelayLength = 0;
                     }
                     
                     //go add player hp
-                    _hadesSystem.Player.HealPercent(HADESConfig.EnhancedHealth.RegenSpeed * 0.02f);
-                } else currentRegenDelayLength++; //count down (up?) if the delay time is not finished
+                    Player.HealPercent(HADESConfig.EnhancedHealth.RegenSpeed * 0.02f);
+                } else _currentRegenDelayLength++; //count down (up?) if the delay time is not finished
             }
             else
             {
-                currentRegenDelayLength = 0;
+                _currentRegenDelayLength = 0;
             }
-            healthMonitor = _hadesSystem.Player.GetPlayerHealth();
+            _healthMonitor = Player.GetPlayerHealth();
         }
     }
 }

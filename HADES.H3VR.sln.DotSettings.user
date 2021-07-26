@@ -4,5 +4,4 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/Frityet/Documents/H3VR-Ref/Assembly-CSharp.dll" /&gt;
-  &lt;Assembly Path="/Users/Frityet/Documents/EHADS.H3VR/packages/Mono.Cecil.0.10.4/lib/net35/Mono.Cecil.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

@@ -313,7 +313,6 @@ namespace HADES.Core
 
             #endregion
 
-
             #region Jumping
 
             public float JumpStaminaModifier => _jumpStaminaModifierField.Value;
