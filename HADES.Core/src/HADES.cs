@@ -6,8 +6,6 @@ namespace HADES.Core
 {
     public class HADES : MonoBehaviour
     {
-        public FVRPlayerBody Player => GM.CurrentPlayerBody;
-
         public FallDamage FallDamage { get; private set; }
         public EnhancedHealth EnhancedHealth { get; private set; }
         public EnhancedMovement EnhancedMovement { get; private set; }

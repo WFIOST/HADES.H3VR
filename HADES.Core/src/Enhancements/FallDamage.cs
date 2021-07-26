@@ -9,36 +9,36 @@ namespace HADES.Core
     {
         private Vector3 _currentPos;
         private float _currentVelocity;
-        private HADES _hadesSystem;
         private Vector3 _previousPos;
         private float _previousVelocity;
         private float _velocityDifference;
 
         private void Start()
         {
-            _hadesSystem = GetComponent<HADES>();
-            if (Config.Enabled) Print("Injected FallDamage into player");
+            base.Start();
         }
 
         private void Update()
         {
-            if (GM.IsDead() || !Config.Enabled) return;
+            base.Update();
+            if (GM.IsDead()) return;
 
             var fallDmg = CalculateFallDamage();
             Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
             if (fallDmg.Item1 >= 1)
-                _hadesSystem.Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
+                Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
         }
 
         public void FixedUpdate()
         {
+            base.FixedUpdate();
             //note that the time frame for everything here is per step
             //etc, if the velocity is 1, that means 1 meter every 50th of a second
 
             //set prev pos
             _previousPos = _currentPos;
             //probably not a good idea to hard-code the idea that there's only ever one player.
-            _currentPos = _hadesSystem.Player.transform.position;
+            _currentPos = Player.transform.position;
 
             //get velocity
             _previousVelocity = _currentVelocity;

@@ -10,26 +10,34 @@ namespace HADES.Core
     {
         protected readonly TConfigEntry Config = new TConfigEntry();
         protected FVRPlayerBody Player => GM.CurrentPlayerBody;
-
-        private void Awake()
+        
+        /*
+        * We have
+        * ```cs
+        * Destroy(this);
+        * ```
+        * so there is literally no way the feature could be loaded
+        */
+        
+        protected void Awake()
         {
-            if (!Config.Enabled) return;
+            if (!Config.Enabled) Destroy(this);
         }
 
-        public virtual void Start()
+        protected void Start()
         {
-            if (!Config.Enabled) return;
+            if (!Config.Enabled) Destroy(this);
             Print($"Injected enhancement {Config.CategoryName}");
         }
 
-        private void Update()
+        protected void Update()
         {
-            if (!Config.Enabled) return;
+            if (!Config.Enabled) Destroy(this);
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
-            if (!Config.Enabled) return;
+            if (!Config.Enabled) Destroy(this);
         }
 
         protected void Print(object message) => Logging.Print($"({Config.CategoryName}) - {message}");

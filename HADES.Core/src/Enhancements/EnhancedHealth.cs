@@ -17,20 +17,20 @@ namespace HADES.Core
 
         private void Start()
         {
-            if (!Config.Enabled) return;
-            Print("Injected EnhancedHealth into player");
+            base.Start();
             _initialHealth = GM.GetPlayerHealth();
         }
 
         private void Update()
         {
-            if (!Config.Enabled) return;
+            base.Update();
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
         }
 
         private void FixedUpdate()
         {
+            base.FixedUpdate();
             //if (HealthPercentage < RegenCap) Regenerate();
 
             //if player is below RegenCap

@@ -54,7 +54,7 @@ namespace HADES.Core
 
         private void Start()
         {
-            if (!Config.Enabled) return;
+            base.Start();
             Stamina = MaxStamina;
             StaminaPercentage = MaxStamina / Stamina * 100;
 
@@ -100,7 +100,7 @@ namespace HADES.Core
 
         private void FixedUpdate()
         {
-            if (!Config.Enabled) return;
+            base.FixedUpdate();
 
             if (PlayerSpeed < Config.StaminaLossStartSpeed)
             {
