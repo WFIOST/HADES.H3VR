@@ -8,6 +8,10 @@ Health and Damage Enhanced System (HADES) for H3VR, based off the Ravenfield mod
     - The player can no longer jump incredible heights without dying
     - Parachutes to soften the fall
     
+- Regeneration
+    - The player will slowly regenerate over time after a configurable wait period, to a set "cap"
+    - Get damaged while regenerating? Wait the period out again
+    
 - Bleeding
     - Damage to the player causes *bleeding* to body parts
     - Use bandages, MedKits, Morphine, Painkillers to heal
