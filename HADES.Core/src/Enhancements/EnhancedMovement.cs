@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using FistVR;
-using HADES.Config;
+using HADES.Configs;
 using UnityEngine;
 using FVRMovementManager = On.FistVR.FVRMovementManager;
 

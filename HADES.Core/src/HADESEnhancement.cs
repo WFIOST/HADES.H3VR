@@ -1,12 +1,12 @@
 using FistVR;
-using HADES.Config;
+using HADES.Configs;
 using UnityEngine;
 
 namespace HADES.Core
 {
     public class HADESEnhancement<TConfigEntry> : MonoBehaviour where TConfigEntry : ConfigEntry, new()
     {
-        protected TConfigEntry Config = new();
+        protected readonly TConfigEntry Config = new TConfigEntry();
         protected FVRPlayerBody Player => GM.CurrentPlayerBody;
     }
 }

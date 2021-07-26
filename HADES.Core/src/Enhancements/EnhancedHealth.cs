@@ -1,5 +1,5 @@
 using FistVR;
-using HADES.Config;
+using HADES.Configs;
 using UnityEngine;
 using static HADES.Utilities.Logging;
 
