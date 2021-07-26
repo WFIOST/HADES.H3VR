@@ -17,20 +17,20 @@ namespace HADES.Core
 
         private void Start()
         {
-            base.Start();
+            if (!Config.Enabled) return;
             _initialHealth = GM.GetPlayerHealth();
         }
 
         private void Update()
         {
-            base.Update();
+            if (!Config.Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
         }
 
         private void FixedUpdate()
         {
-            base.FixedUpdate();
+            if (!Config.Enabled) return;
             //if (HealthPercentage < RegenCap) Regenerate();
 
             //if player is below RegenCap
