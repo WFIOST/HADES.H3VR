@@ -53,6 +53,7 @@ namespace HADES.Core
 
         private void Start()
         {
+            _hadesSystem = GetComponent<HADES>();
             Stamina = MaxStamina;
         }
 

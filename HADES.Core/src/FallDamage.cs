@@ -16,6 +16,7 @@ namespace HADES.Core
 
         private void Start()
         {
+            _hadesSystem = GetComponent<HADES>();
             if (HADESConfig.FallDamage.Enabled)
             {
                 Print("Injected FallDamage into player");
