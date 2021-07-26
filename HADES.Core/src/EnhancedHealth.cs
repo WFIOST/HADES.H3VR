@@ -8,6 +8,7 @@ namespace HADES.Core
 {
     public class EnhancedHealth : MonoBehaviour
     {
+        private HADES _hadesSystem;
         private float _initialHealth;
         public float HealthPercentage { get; private set; }
 
@@ -16,10 +17,11 @@ namespace HADES.Core
         private float RegenDelay => HADESConfig.EnhancedHealth.RegenDelay;
         private float RegenSpeed => HADESConfig.EnhancedHealth.RegenSpeed;
 
-        private GameObject HealthBars => HADES.Player.HealthBar;
+        private GameObject HealthBars => _hadesSystem.Player.HealthBar;
 
         private void Start()
         {
+            _hadesSystem = GetComponent<HADES>();
             Print("Injected EnhancedHealth into player");
             _initialHealth = GM.GetPlayerHealth();
         }
@@ -45,7 +47,7 @@ namespace HADES.Core
                 float curHealth = CurrentHealth;
                 Logging.Debug.Print($"Current health {curHealth}\nInit health {initHealth}");
                 if (curHealth < initHealth) goto regen;
-                HADES.Player.HealPercent(i);
+                _hadesSystem.Player.HealPercent(i);
             }
 
             Logging.Debug.Print("Done Regeneration");

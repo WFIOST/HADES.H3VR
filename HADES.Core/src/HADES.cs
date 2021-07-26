@@ -6,7 +6,7 @@ namespace HADES.Core
 {
     public class HADES : MonoBehaviour
     {
-        public static FVRPlayerBody Player => GM.CurrentPlayerBody;
+        public FVRPlayerBody Player => GM.CurrentPlayerBody;
 
         public FallDamage FallDamage { get; private set; }
         public EnhancedHealth EnhancedHealth { get; private set; }
@@ -14,7 +14,7 @@ namespace HADES.Core
 
         private void Awake()
         {
-            Print("Injected EHADS into player");
+            Print("Injected HADES into player");
             FallDamage = gameObject.AddComponent<FallDamage>();
             EnhancedHealth = gameObject.AddComponent<EnhancedHealth>();
             EnhancedMovement = gameObject.AddComponent<EnhancedMovement>();
