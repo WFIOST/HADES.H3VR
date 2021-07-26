@@ -38,18 +38,6 @@ namespace HADES.Core
         {
             //if (HealthPercentage < RegenCap) Regenerate();
             
-            RegenerationHandler();
-        }
-        
-        //this is the public entry-way to regenerate the player
-        public void RegeneratePlayerHP(float amt)
-        {
-            _regenToGo += amt;
-        }
-        
-        //this is the bit that actually regenerates your hp
-        private void RegenerationHandler()
-        {
             //if player is below RegenCap
             if (Player.GetPlayerHealth() <
                 HADESConfig.EnhancedHealth.RegenCap * Player.GetMaxHealthPlayerRaw())
@@ -73,5 +61,12 @@ namespace HADES.Core
             }
             _healthMonitor = Player.GetPlayerHealth();
         }
+        
+        //this is the public entry-way to regenerate the player
+        public void RegeneratePlayerHP(float amt)
+        {
+            _regenToGo += amt;
+        }
+        
     }
 }
