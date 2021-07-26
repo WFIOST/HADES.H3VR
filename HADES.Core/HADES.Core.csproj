@@ -88,11 +88,14 @@
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="src\Common.cs" />
+        <Compile Include="src\Configs\EnhancedHealth.cs" />
+        <Compile Include="src\Configs\EnhancedMovement.cs" />
+        <Compile Include="src\Configs\FallDamage.cs" />
+        <Compile Include="src\Configs\ConfigEntry.cs" />
         <Compile Include="src\Enhancements\EnhancedHealth.cs" />
         <Compile Include="src\Enhancements\EnhancedMovement.cs" />
         <Compile Include="src\Enhancements\FallDamage.cs" />
         <Compile Include="src\HADES.cs" />
-        <Compile Include="src\HADESConfig.cs" />
         <Compile Include="src\HADESEnhancement.cs" />
     </ItemGroup>
     <ItemGroup>
