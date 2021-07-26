@@ -1,8 +1,16 @@
+using System;
 using BepInEx.Logging;
+using FistVR;
 using HADES.Core;
+using UnityEngine;
 
-namespace HADES.Common
+namespace HADES.Utilities
 {
+    public static class Common
+    {
+        public static readonly WaitForSeconds WAIT_A_SEX = new WaitForSeconds(1);
+    }
+    
     public struct PluginInfo
     {
         public const string NAME = "HADES.Core";

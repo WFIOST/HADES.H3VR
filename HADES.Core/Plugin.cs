@@ -1,8 +1,9 @@
-﻿using BepInEx;
+﻿using System;
+using BepInEx;
 using BepInEx.Logging;
 using FistVR;
-using static HADES.Common.Logging;
-using PluginInfo = HADES.Common.PluginInfo;
+using static HADES.Utilities.Logging;
+using PluginInfo = HADES.Utilities.PluginInfo;
 
 namespace HADES.Core
 {
@@ -11,7 +12,6 @@ namespace HADES.Core
     {
         public static Plugin Mod;
         public static ManualLogSource ConsoleLogger;
-
         public Plugin()
         {
             Mod = this;

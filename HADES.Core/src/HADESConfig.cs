@@ -103,7 +103,7 @@ namespace HADES.Core
 
         public class EnhancedMovementConfig : ConfigEntry
         {
-            public const string CATEGORY_NAME = "Enhanced Movement";
+            private const string CATEGORY_NAME = "Enhanced Movement";
             private readonly ConfigEntry<float> _backpackWeightModifierEntry;
             private readonly ConfigEntry<float> _ccbObjWeightModifierEntry;
             private readonly ConfigEntry<float> _largeObjWeightModifierEntry;
@@ -114,6 +114,7 @@ namespace HADES.Core
             private readonly ConfigEntry<float> _staminaGainEntry;
             private readonly ConfigEntry<float> _staminaLossEntry;
             private readonly ConfigEntry<float> _weightModifierEntry;
+            private readonly ConfigEntry<float> _staminaLossStartSpeedEntry;
 
             public EnhancedMovementConfig()
             {
@@ -137,16 +138,24 @@ namespace HADES.Core
                 (
                     CATEGORY_NAME,
                     "Stamina Gain",
-                    5f,
-                    "The amount of stamina gained whilst inactive"
+                    15f,
+                    "The speed of which stamina regenerates"
                 );
 
                 _staminaLossEntry = Plugin.Mod.Config.Bind
                 (
                     CATEGORY_NAME,
                     "Stamina Loss",
+                    30f,
+                    "The speed of which stamina drains"
+                );
+
+                _staminaLossStartSpeedEntry = Plugin.Mod.Config.Bind
+                (
+                    CATEGORY_NAME,
+                    "Stamina Loss Speed",
                     10f,
-                    "The amount of stamina lost whilst active"
+                    "The speed that must be reached for stamina to drain"
                 );
 
                 const string WEIGHT_CAT_NAME = CATEGORY_NAME + " - Weight Configuration";
@@ -213,6 +222,8 @@ namespace HADES.Core
             public float StaminaGain => _staminaGainEntry.Value;
 
             public float StaminaLoss => _staminaLossEntry.Value;
+
+            public float StaminaLossStartSpeed => _staminaLossStartSpeedEntry.Value;
 
             public float WeightModifier => _weightModifierEntry.Value;
 
