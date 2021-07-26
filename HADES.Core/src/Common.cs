@@ -1,3 +1,4 @@
+using System;
 using BepInEx.Logging;
 using FistVR;
 using HADES.Core;
