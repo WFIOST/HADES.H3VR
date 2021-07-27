@@ -1,12 +1,11 @@
 using BepInEx.Configuration;
-using HADES.Core;
 
 namespace HADES.Configs
 {
     public class ConfigEntry
     {
-        public string CategoryName { get; protected set; }
         protected ConfigEntry<bool> EnabledEntry;
+        public string CategoryName { get; protected set; }
         public bool Enabled => EnabledEntry.Value;
     }
 }

@@ -1,4 +1,3 @@
-using FistVR;
 using UnityEngine;
 using static HADES.Utilities.Logging;
 

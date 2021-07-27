@@ -13,14 +13,9 @@ namespace HADES.Core
         private float _previousVelocity;
         private float _velocityDifference;
 
-        private void Start()
-        {
-            base.Start();
-        }
-
         private void Update()
         {
-            base.Update();
+            if (!Config.Enabled) return;
             if (GM.IsDead()) return;
 
             var fallDmg = CalculateFallDamage();
@@ -31,7 +26,7 @@ namespace HADES.Core
 
         public void FixedUpdate()
         {
-            base.FixedUpdate();
+            if (!Config.Enabled) return;
             //note that the time frame for everything here is per step
             //etc, if the velocity is 1, that means 1 meter every 50th of a second
 

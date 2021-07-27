@@ -1,4 +1,3 @@
-using System;
 using FistVR;
 using HADES.Configs;
 using HADES.Utilities;
@@ -10,36 +9,11 @@ namespace HADES.Core
     {
         protected readonly TConfigEntry Config = new TConfigEntry();
         protected FVRPlayerBody Player => GM.CurrentPlayerBody;
-        
-        /*
-        * We have
-        * ```cs
-        * Destroy(this);
-        * ```
-        * so there is literally no way the feature could be loaded
-        */
-        
-        protected void Awake()
-        {
-            if (!Config.Enabled) Destroy(this);
-        }
+        protected FVRMovementManager MovementManager => GM.CurrentMovementManager;
 
-        protected void Start()
+        protected void Print(object message)
         {
-            if (!Config.Enabled) Destroy(this);
-            Print($"Injected enhancement {Config.CategoryName}");
+            Logging.Print($"({Config.CategoryName}) - {message}");
         }
-
-        protected void Update()
-        {
-            if (!Config.Enabled) Destroy(this);
-        }
-
-        protected virtual void FixedUpdate()
-        {
-            if (!Config.Enabled) Destroy(this);
-        }
-
-        protected void Print(object message) => Logging.Print($"({Config.CategoryName}) - {message}");
     }
 }
