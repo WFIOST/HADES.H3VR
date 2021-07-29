@@ -23,12 +23,12 @@ namespace HADES.Core
         {
             GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
             Print($"Loaded EHADS version {PluginInfo.VERSION}!");
-        }
+        } 
 
-        public static ConfigEntry<T> BindConfig<T>(string section,
-            string key,
-            T defaultValue,
-            string description)
+        public static ConfigEntry<T> BindConfig<T>( string  section,
+                                                    string  key,
+                                                    T       defaultValue,
+                                                    string  description)
         {
             return Mod.Config.Bind(section, key, defaultValue, description);
         }
