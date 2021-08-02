@@ -1,14 +1,9 @@
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using HADES.Core;
 using UnityEngine;
 
 namespace HADES.Utilities
 {
-    public static class Common
-    {
-        public static readonly WaitForSeconds WAIT_A_SEX = new WaitForSeconds(1);
-    }
-
     public struct PluginInfo
     {
         public const string NAME = "HADES.Core";
@@ -43,5 +38,12 @@ namespace HADES.Utilities
 
         public T1 Item1 { get; }
         public T2 Item2 { get; }
+    }
+
+
+    public static class Extensions
+    {
+        public static Vector3 Add(this Vector3 vec3, Vector3 add) => new Vector3(vec3.x + add.x, vec3.y + add.y, vec3.z + add.z);
+        public static Vector3 Add(this Vector3 vec3, float add) => new Vector3(vec3.x + add, vec3.y + add, vec3.z + add);
     }
 }

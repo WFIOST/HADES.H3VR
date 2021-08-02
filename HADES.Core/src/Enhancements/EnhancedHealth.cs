@@ -1,6 +1,7 @@
 using FistVR;
 using HADES.Configs;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace HADES.Core
 {
@@ -9,16 +10,18 @@ namespace HADES.Core
         private float _currentRegenDelayLength;
         private float _healthMonitor;
         private float _initialHealth;
-        private float _regenToGo;
-        public float HealthPercentage { get; private set; }
 
+        private Text _hbText;
+        
+        public float HealthPercentage { get; private set; }
         private float CurrentHealth => GM.GetPlayerHealth();
-        private GameObject HealthBars => Player.HealthBar;
+        private GameObject HealthBar => Player.HealthBar;
 
         private void Start()
         {
             if (!Config.Enabled) return;
             _initialHealth = GM.GetPlayerHealth();
+            _hbText = HealthBar.transform.Find("f/Label_Title (1)").GetComponent<Text>();
         }
 
         private void Update()
@@ -26,10 +29,12 @@ namespace HADES.Core
             if (!Config.Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
+            _hbText.text = $"{HealthPercentage}%";
         }
 
         private void FixedUpdate()
         {
+            
             if (!Config.Enabled) return;
             //if (HealthPercentage < RegenCap) Regenerate();
 
@@ -56,12 +61,6 @@ namespace HADES.Core
             }
 
             _healthMonitor = Player.GetPlayerHealth();
-        }
-
-        //this is the public entry-way to regenerate the player
-        public void RegeneratePlayerHP(float amt)
-        {
-            _regenToGo += amt;
         }
     }
 }

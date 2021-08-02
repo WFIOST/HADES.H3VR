@@ -2,8 +2,6 @@ using System;
 using System.Linq;
 using FistVR;
 using HADES.Configs;
-using HADES.Utilities;
-using HarmonyLib;
 using UnityEngine;
 
 namespace HADES.Core

@@ -10,12 +10,14 @@ namespace HADES.Core
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
     public class Plugin : BaseUnityPlugin
     {
-        public static Plugin Mod;
         public static ManualLogSource ConsoleLogger;
 
+        private static Plugin _mod;
+        
         public Plugin()
         {
-            Mod = this;
+            _mod = this;
+            ConsoleLogger = Logger;
             Print($"Loading EHADS version {PluginInfo.VERSION}");
         }
 
@@ -23,14 +25,14 @@ namespace HADES.Core
         {
             GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
             Print($"Loaded EHADS version {PluginInfo.VERSION}!");
-        }
+        } 
 
-        public static ConfigEntry<T> BindConfig<T>(string section,
-            string key,
-            T defaultValue,
-            string description)
+        public static ConfigEntry<T> BindConfig<T>( string  section,
+                                                    string  key,
+                                                    T       defaultValue,
+                                                    string  description)
         {
-            return Mod.Config.Bind(section, key, defaultValue, description);
+            return _mod.Config.Bind(section, key, defaultValue, description);
         }
     }
 }

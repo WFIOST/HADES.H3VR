@@ -71,6 +71,10 @@
           <HintPath>..\packages\MonoMod.Utils.21.4.21.3\lib\net35\MonoMod.Utils.dll</HintPath>
           <Private>True</Private>
         </Reference>
+        <Reference Include="Stratum, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>..\packages\Stratum.1.0.0\lib\net35\Stratum.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
