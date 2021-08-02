@@ -10,7 +10,6 @@ namespace HADES.Core
         private float _currentRegenDelayLength;
         private float _healthMonitor;
         private float _initialHealth;
-        private float _regenToGo;
 
         private Text _hbText;
         
@@ -62,12 +61,6 @@ namespace HADES.Core
             }
 
             _healthMonitor = Player.GetPlayerHealth();
-        }
-
-        //this is the public entry-way to regenerate the player
-        public void RegeneratePlayerHP(float amt)
-        {
-            _regenToGo += amt;
         }
     }
 }

@@ -18,10 +18,10 @@ namespace HADES.Core
             if (!Config.Enabled) return;
             if (GM.IsDead()) return;
 
-            var fallDmg = CalculateFallDamage();
-            Print($"DMG: {fallDmg.Item1}, VEL: {fallDmg.Item2}");
-            if (fallDmg.Item1 >= 1)
-                Player.HarmPercent(fallDmg.Item1 / 100); //Harm the player the percentage that they fell
+            var raw = CalculateFallDamage();
+            var data = new { Damage = raw.Item1, Velocity = raw.Item2 };
+            if (data.Damage >= 1)
+                Player.HarmPercent(data.Damage / 100); //Harm the player the percentage that they fell
         }
 
         public void FixedUpdate()
