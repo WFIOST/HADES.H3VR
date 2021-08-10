@@ -11,10 +11,10 @@ namespace HADES.Core
 
         private void Awake()
         {
-            Print("Injected HADES into player");
             FallDamage = gameObject.AddComponent<FallDamage>();
             EnhancedHealth = gameObject.AddComponent<EnhancedHealth>();
             EnhancedMovement = gameObject.AddComponent<EnhancedMovement>();
+            Print("Injected HADES into player");
         }
     }
 }

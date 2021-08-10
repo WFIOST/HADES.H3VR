@@ -8,11 +8,11 @@ namespace HADES.Core
     public class EnhancedHealth : HADESEnhancement<EnhancedHealthConfig>
     {
         private float _currentRegenDelayLength;
+
+        private Text _hbText;
         private float _healthMonitor;
         private float _initialHealth;
 
-        private Text _hbText;
-        
         public float HealthPercentage { get; private set; }
         private float CurrentHealth => GM.GetPlayerHealth();
         private GameObject HealthBar => Player.HealthBar;
@@ -28,13 +28,12 @@ namespace HADES.Core
         {
             if (!Config.Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
-            HealthPercentage = CurrentHealth / _initialHealth * 100; //Thanks nathan!
+            HealthPercentage = CurrentHealth / _initialHealth * 100;
             _hbText.text = $"{HealthPercentage}%";
         }
 
         private void FixedUpdate()
         {
-            
             if (!Config.Enabled) return;
             //if (HealthPercentage < RegenCap) Regenerate();
 

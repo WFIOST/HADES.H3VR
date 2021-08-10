@@ -1,8 +1,12 @@
 using System;
 using System.Linq;
-using FistVR;
 using HADES.Configs;
+using On.FistVR;
 using UnityEngine;
+using FVRPhysicalObject = FistVR.FVRPhysicalObject;
+using FVRQuickBeltSlot = FistVR.FVRQuickBeltSlot;
+using GM = FistVR.GM;
+using SimulationOptions = FistVR.SimulationOptions;
 
 namespace HADES.Core
 {
@@ -52,8 +56,8 @@ namespace HADES.Core
             get => Player.GetBodyMovementSpeed();
             set
             {
-                MovementManager.SlidingSpeed    = value;
-                MovementManager.DashSpeed       = value;
+                MovementManager.SlidingSpeed = value;
+                MovementManager.DashSpeed = value;
             }
         }
 
@@ -63,7 +67,7 @@ namespace HADES.Core
             Stamina = Config.MaxStamina;
             StaminaPercentage = Config.MaxStamina / Stamina * 100;
 
-            On.FistVR.FVRMovementManager.Jump += JumpPlus;
+            FVRMovementManager.Jump += JumpPlus;
         }
 
         private void Update()
@@ -82,15 +86,16 @@ namespace HADES.Core
             else if (PlayerSpeed < Config.StaminaLossStartSpeed && Stamina < Config.MaxStamina)
                 Stamina += Convert.ToSingle((Config.StaminaGain - Weight - PlayerSpeed) * 0.02);
         }
-        private void JumpPlus(On.FistVR.FVRMovementManager.orig_Jump _, FVRMovementManager self)
+
+        private void JumpPlus(FVRMovementManager.orig_Jump _, FistVR.FVRMovementManager self)
         {
             if (Stamina < Config.JumpStaminaModifier) return;
-            
+
             Stamina -= Config.JumpStaminaModifier + Weight;
-            
-            if ((self.Mode != FVRMovementManager.MovementMode.Armswinger || self.m_armSwingerGrounded)
-                 && (self.Mode != FVRMovementManager.MovementMode.SingleTwoAxis 
-                     && self.Mode != FVRMovementManager.MovementMode.TwinStick || self.m_twoAxisGrounded))
+
+            if ((self.Mode != FistVR.FVRMovementManager.MovementMode.Armswinger || self.m_armSwingerGrounded)
+                && (self.Mode != FistVR.FVRMovementManager.MovementMode.SingleTwoAxis
+                    && self.Mode != FistVR.FVRMovementManager.MovementMode.TwinStick || self.m_twoAxisGrounded))
             {
                 self.DelayGround(0.1f);
                 float jumpForce = GM.Options.SimulationOptions.PlayerGravityMode switch
@@ -104,21 +109,21 @@ namespace HADES.Core
                 jumpForce *= 0.65f;
                 switch (self.Mode)
                 {
-                    case FVRMovementManager.MovementMode.Armswinger:
+                    case FistVR.FVRMovementManager.MovementMode.Armswinger:
                         self.DelayGround(0.25f);
                         self.m_armSwingerVelocity.y = Mathf.Clamp(self.m_armSwingerVelocity.y, 0f,
                             self.m_armSwingerVelocity.y);
                         self.m_armSwingerVelocity.y = jumpForce;
                         self.m_armSwingerGrounded = false;
                         break;
-                    case FVRMovementManager.MovementMode.SingleTwoAxis:
+                    case FistVR.FVRMovementManager.MovementMode.SingleTwoAxis:
                         self.DelayGround(0.25f);
                         self.m_twoAxisVelocity.y =
                             Mathf.Clamp(self.m_twoAxisVelocity.y, 0f, self.m_twoAxisVelocity.y);
                         self.m_twoAxisVelocity.y = jumpForce;
                         self.m_twoAxisGrounded = false;
                         break;
-                    case FVRMovementManager.MovementMode.TwinStick:
+                    case FistVR.FVRMovementManager.MovementMode.TwinStick:
                         self.DelayGround(0.25f);
                         self.m_twoAxisVelocity.y =
                             Mathf.Clamp(self.m_twoAxisVelocity.y, 0f, self.m_twoAxisVelocity.y);

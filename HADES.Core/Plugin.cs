@@ -13,7 +13,7 @@ namespace HADES.Core
         public static ManualLogSource ConsoleLogger;
 
         private static Plugin _mod;
-        
+
         public Plugin()
         {
             _mod = this;
@@ -25,14 +25,20 @@ namespace HADES.Core
         {
             GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
             Print($"Loaded EHADS version {PluginInfo.VERSION}!");
-        } 
-
+        }
+ 
         public static ConfigEntry<T> BindConfig<T>( string  section,
                                                     string  key,
                                                     T       defaultValue,
                                                     string  description)
         {
-            return _mod.Config.Bind(section, key, defaultValue, description);
+            return _mod.Config.Bind
+            (
+                section,
+                key,
+                defaultValue,
+                description
+            );
         }
     }
 }
