@@ -15,8 +15,7 @@ namespace HADES.Core
 
         private void Update()
         {
-            if (!Config.Enabled) return;
-            if (GM.IsDead()) return;
+            if (!Config.Enabled || GM.IsDead()) return;
 
 
             float damage;
