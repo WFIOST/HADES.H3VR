@@ -7,7 +7,7 @@ namespace HADES.Utilities
     public struct PluginInfo
     {
         public const string NAME = "HADES.Core";
-        public const string GUID = "net.frityet.ehads";
+        public const string GUID = "com.wfiost.hades";
         public const string VERSION = "1.0.0";
     }
 
