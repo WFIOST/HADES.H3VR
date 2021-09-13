@@ -5,7 +5,7 @@ namespace HADES.Configs
 {
     public class FallDamageConfig : ConfigEntry
     {
-        private const string CATEGORY_NAME = "Fall Damages";
+        private const string CATEGORY_NAME = "Fall Damage";
         private readonly ConfigEntry<float> _damageMultiplierEntry;
         private readonly ConfigEntry<float> _fallHeightEntry;
 

@@ -11,7 +11,7 @@ namespace HADES.Core
         protected FVRPlayerBody Player => GM.CurrentPlayerBody;
         protected FVRMovementManager MovementManager => GM.CurrentMovementManager;
 
-        protected void Print(object message) => Logging.Print($"({Config.CategoryName}) - {message}");
+        protected void Print(object message) => Logging.Debug.Print($"({Config.CategoryName}) - {message}");
         
     }
 }
