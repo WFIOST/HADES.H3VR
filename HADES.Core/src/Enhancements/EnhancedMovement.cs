@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using HADES.Configs;
+using HADES.Utilities;
 using On.FistVR;
 using UnityEngine;
 using FVRPhysicalObject = FistVR.FVRPhysicalObject;
@@ -24,7 +25,7 @@ namespace HADES.Core
                 var weight = 0.0f;
 
                 //If your QB slot has an object in it, add the associated weight of the size of the object to the weight 
-                foreach (FVRQuickBeltSlot slot in qbSlots.Where(slot => slot.CurObject != null))
+                foreach (FVRQuickBeltSlot slot in qbSlots.Where(slot => !slot.CurObject.IsNull()))
                 {
                     FVRPhysicalObject obj = slot.CurObject;
 

@@ -22,19 +22,6 @@ namespace HADES.Utilities
         }
     }
 
-    public class Tuple<T1, T2>
-    {
-        public Tuple(T1 item1, T2 item2)
-        {
-            Item1 = item1;
-            Item2 = item2;
-        }
-
-        public T1 Item1 { get; }
-        public T2 Item2 { get; }
-    }
-
-
     public static class Extensions
     {
         public static Vector3 Add(this Vector3 vec3, Vector3 add) =>
@@ -43,6 +30,7 @@ namespace HADES.Utilities
 
         public static Vector3 Add(this Vector3 vec3, float add) => 
             new Vector3(vec3.x + add, vec3.y + add, vec3.z + add);
-        
+
+        public static bool IsNull(this Object obj) => obj == null;
     }
 }
