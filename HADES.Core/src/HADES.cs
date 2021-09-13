@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static HADES.Utilities.Logging;
@@ -19,6 +20,14 @@ namespace HADES.Core
             Bleeding = gameObject.AddComponent<Bleeding>();
             
             Print("Injected HADES into player");
+        }
+
+        private void OnDestroy()
+        {
+            Destroy(FallDamage);
+            Destroy(EnhancedHealth);
+            Destroy(EnhancedMovement);
+            Destroy(Bleeding);
         }
     }
 }
