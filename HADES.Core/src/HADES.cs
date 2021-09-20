@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using static HADES.Utilities.Logging;
 
@@ -7,10 +5,10 @@ namespace HADES.Core
 {
     public class HADES : MonoBehaviour
     {
-        public FallDamage       FallDamage          { get; private set; }
-        public EnhancedHealth   EnhancedHealth      { get; private set; }
-        public EnhancedMovement EnhancedMovement    { get; private set; }
-        public Bleeding         Bleeding            { get; private set; }
+        public FallDamage       FallDamage       { get; private set; }
+        public EnhancedHealth   EnhancedHealth   { get; private set; }
+        public EnhancedMovement EnhancedMovement { get; private set; }
+        public Bleeding         Bleeding         { get; private set; }
 
         private void Awake()
         {
@@ -18,7 +16,7 @@ namespace HADES.Core
             EnhancedHealth = gameObject.AddComponent<EnhancedHealth>();
             EnhancedMovement = gameObject.AddComponent<EnhancedMovement>();
             Bleeding = gameObject.AddComponent<Bleeding>();
-            
+
             Print("Injected HADES into player");
         }
 

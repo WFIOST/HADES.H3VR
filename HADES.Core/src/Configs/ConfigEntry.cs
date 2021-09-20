@@ -6,6 +6,6 @@ namespace HADES.Configs
     {
         protected ConfigEntry<bool> EnabledEntry;
         public string CategoryName { get; protected set; }
-        public bool Enabled => EnabledEntry.Value;
+        public bool   Enabled      => EnabledEntry.Value;
     }
 }

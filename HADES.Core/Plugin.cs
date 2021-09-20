@@ -20,43 +20,43 @@ namespace HADES.Core
         {
             _mod = this;
             ConsoleLogger = Logger;
-            Print($"Loading EHADS version {PluginInfo.VERSION}");
-            
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
+            Print($"Loading HADES version {PluginInfo.VERSION}");
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            load:
-            try
-            {
-                GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
-            }
-            catch (NullReferenceException e)
-            {
-                goto load;
-            }
-            
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private void Start()
         {
-            
-            Print($"Loaded EHADS version {PluginInfo.VERSION}!");
+            Print($"Loaded HADES version {PluginInfo.VERSION}!");
         }
- 
-        public static ConfigEntry<T> BindConfig<T>( string  section,
-                                                    string  key,
-                                                    T       defaultValue,
-                                                    string  description)
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            return _mod.Config.Bind
+            var trycount = 0;
+
+            load:
+            try
+            {
+                GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
+                Print($"Loaded HADES after {trycount} tries");
+            }
+            catch (NullReferenceException e)
+            {
+                ++trycount;
+                goto load;
+            }
+        }
+
+        public static ConfigEntry<T> BindConfig<T>(string section,
+                                                   string key,
+                                                   T      defaultValue,
+                                                   string description) =>
+            _mod.Config.Bind
             (
                 section,
                 key,
                 defaultValue,
                 description
             );
-        }
     }
 }

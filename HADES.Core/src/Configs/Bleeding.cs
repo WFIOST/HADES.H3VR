@@ -6,13 +6,13 @@ namespace HADES.Configs
     public class BleedingConfig : ConfigEntry
     {
         private const string CATEGORY_NAME = "Bleeding";
-        private readonly ConfigEntry<float> _bleedoutRateEntry;
         private readonly ConfigEntry<float> _bleedoutLengthEntry;
+        private readonly ConfigEntry<float> _bleedoutRateEntry;
 
         public BleedingConfig()
         {
             CategoryName = CATEGORY_NAME;
-            
+
             EnabledEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
@@ -20,10 +20,10 @@ namespace HADES.Configs
                 true,
                 "If enabled, the player will bleed out once damaged"
             );
-            
+
             _bleedoutRateEntry = Plugin.BindConfig
             (
-                CATEGORY_NAME, 
+                CATEGORY_NAME,
                 "Bleedout Rate",
                 10f,
                 "How much health is lost per second whilst bleeding out"
@@ -38,7 +38,7 @@ namespace HADES.Configs
             );
         }
 
-        public float BleedoutRate => _bleedoutRateEntry.Value;
+        public float BleedoutRate   => _bleedoutRateEntry.Value;
         public float BleedoutLength => _bleedoutLengthEntry.Value;
     }
 }

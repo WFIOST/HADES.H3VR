@@ -13,7 +13,7 @@ namespace HADES.Core
 {
     public class EnhancedMovement : HADESEnhancement<EnhancedMovementConfig>
     {
-        public float Stamina { get; private set; }
+        public float Stamina           { get; private set; }
         public float StaminaPercentage { get; private set; }
 
         public float Weight
@@ -102,10 +102,10 @@ namespace HADES.Core
                 float jumpForce = GM.Options.SimulationOptions.PlayerGravityMode switch
                 {
                     SimulationOptions.GravityMode.Realistic => Config.RealisticGravityJumpForce,
-                    SimulationOptions.GravityMode.Playful => Config.PlayfulGravityJumpForce,
+                    SimulationOptions.GravityMode.Playful   => Config.PlayfulGravityJumpForce,
                     SimulationOptions.GravityMode.OnTheMoon => Config.MoonGravityJumpForce,
-                    SimulationOptions.GravityMode.None => Config.NoGravityJumpForce,
-                    _ => 0f
+                    SimulationOptions.GravityMode.None      => Config.NoGravityJumpForce,
+                    _                                       => 0f
                 };
                 jumpForce *= 0.65f;
                 switch (self.Mode)
@@ -113,7 +113,7 @@ namespace HADES.Core
                     case FistVR.FVRMovementManager.MovementMode.Armswinger:
                         self.DelayGround(0.25f);
                         self.m_armSwingerVelocity.y = Mathf.Clamp(self.m_armSwingerVelocity.y, 0f,
-                            self.m_armSwingerVelocity.y);
+                                                                  self.m_armSwingerVelocity.y);
                         self.m_armSwingerVelocity.y = jumpForce;
                         self.m_armSwingerGrounded = false;
                         break;

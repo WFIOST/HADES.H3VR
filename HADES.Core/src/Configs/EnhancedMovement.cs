@@ -199,32 +199,32 @@ namespace HADES.Configs
 
         #region Stamina
 
-        public float MaxStamina => _maxStaminaEntry.Value;
-        public float StaminaGain => _staminaGainEntry.Value;
-        public float StaminaLoss => _staminaLossEntry.Value;
+        public float MaxStamina            => _maxStaminaEntry.Value;
+        public float StaminaGain           => _staminaGainEntry.Value;
+        public float StaminaLoss           => _staminaLossEntry.Value;
         public float StaminaLossStartSpeed => _staminaLossStartSpeedEntry.Value;
 
         #endregion
 
         #region Weight
 
-        public float WeightModifier => _weightModifierEntry.Value;
-        public float BackpackWeightModifier => _backpackWeightModifierEntry.Value;
-        public float SmallObjectWeightModifier => _smallObjWeightModifierEntry.Value;
-        public float MediumObjectWeightModifier => _mediumObjWeightModifierEntry.Value;
-        public float LargeObjectWeightModifier => _largeObjWeightModifierEntry.Value;
+        public float WeightModifier              => _weightModifierEntry.Value;
+        public float BackpackWeightModifier      => _backpackWeightModifierEntry.Value;
+        public float SmallObjectWeightModifier   => _smallObjWeightModifierEntry.Value;
+        public float MediumObjectWeightModifier  => _mediumObjWeightModifierEntry.Value;
+        public float LargeObjectWeightModifier   => _largeObjWeightModifierEntry.Value;
         public float MassiveObjectWeightModifier => _massiveObjWeightModifierEntry.Value;
-        public float CCBWeightModifer => _ccbObjWeightModifierEntry.Value;
+        public float CCBWeightModifer            => _ccbObjWeightModifierEntry.Value;
 
         #endregion
 
         #region Jumping
 
-        public float JumpStaminaModifier => _jumpStaminaModifierField.Value;
+        public float JumpStaminaModifier       => _jumpStaminaModifierField.Value;
         public float RealisticGravityJumpForce => _realGravModeJumpForceField.Value;
-        public float PlayfulGravityJumpForce => _playGravModeJumpForceField.Value;
-        public float MoonGravityJumpForce => _moonGravModeJumpForceField.Value;
-        public float NoGravityJumpForce => _noneGravModeJumpForceField.Value;
+        public float PlayfulGravityJumpForce   => _playGravModeJumpForceField.Value;
+        public float MoonGravityJumpForce      => _moonGravModeJumpForceField.Value;
+        public float NoGravityJumpForce        => _noneGravModeJumpForceField.Value;
 
         #endregion
     }

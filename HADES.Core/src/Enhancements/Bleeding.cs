@@ -1,5 +1,3 @@
-using System;
-using FistVR;
 using HADES.Configs;
 
 namespace HADES.Core
@@ -8,7 +6,6 @@ namespace HADES.Core
     {
         private void FixedUpdate()
         {
-            
         }
     }
 }

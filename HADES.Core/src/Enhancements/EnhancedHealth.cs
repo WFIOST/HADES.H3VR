@@ -13,9 +13,9 @@ namespace HADES.Core
         private float _healthMonitor;
         private float _initialHealth;
 
-        public float HealthPercentage { get; private set; }
-        private float CurrentHealth => GM.GetPlayerHealth();
-        private GameObject HealthBar => Player.HealthBar;
+        public  float      HealthPercentage { get; private set; }
+        private float      CurrentHealth    => GM.GetPlayerHealth();
+        private GameObject HealthBar        => Player.HealthBar;
 
         private void Start()
         {
@@ -35,7 +35,8 @@ namespace HADES.Core
         private void FixedUpdate()
         {
             if (!Config.Enabled) return;
-            //if (HealthPercentage < RegenCap) Regenerate();
+
+            /* REGENERATION */
 
             //if player is below RegenCap
             if (Player.GetPlayerHealth() < Config.RegenCap * Player.GetMaxHealthPlayerRaw())
