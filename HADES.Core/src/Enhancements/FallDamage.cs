@@ -20,7 +20,7 @@ namespace HADES.Core
             float damage;
             float velocity;
             CalculateFallDamage(out damage, out velocity);
-            
+
             if (damage >= 1)
                 Player.HarmPercent(damage / 100); //Harm the player the percentage that they fell
         }
