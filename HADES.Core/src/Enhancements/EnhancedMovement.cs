@@ -34,17 +34,12 @@ namespace HADES.Core
 
                     weight += obj.Size switch
                     {
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Small => Config
-                            .SmallObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Medium => Config
-                            .MediumObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Large => Config
-                            .LargeObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.Massive => Config
-                            .MassiveObjectWeightModifier,
-                        FVRPhysicalObject.FVRPhysicalObjectSize.CantCarryBig => Config
-                            .CCBWeightModifer,
-                        _ => throw new ArgumentOutOfRangeException()
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Small        => Config.SmallObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Medium       => Config.MediumObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Large        => Config.LargeObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.Massive      => Config.MassiveObjectWeightModifier,
+                        FVRPhysicalObject.FVRPhysicalObjectSize.CantCarryBig => Config.CCBWeightModifer,
+                        _                                                    => throw new ArgumentOutOfRangeException()
                     };
                 }
 
@@ -73,6 +68,7 @@ namespace HADES.Core
 
         private void Update()
         {
+
             //Decrease the players speed based upon how much stamina there is compared to the max amount of stamina
             PlayerSpeed *= Convert.ToSingle(Stamina / Config.MaxStamina);
         }
