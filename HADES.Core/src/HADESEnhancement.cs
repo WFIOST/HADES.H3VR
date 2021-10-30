@@ -1,3 +1,4 @@
+using System;
 using FistVR;
 using HADES.Configs;
 using HADES.Utilities;
@@ -14,6 +15,14 @@ namespace HADES.Core
         protected void Print(object message)
         {
             Logging.Debug.Print($"({Config.CategoryName}) - {message}");
+        }
+        
+        private void Update()
+        {
+            if (Config == null)
+            {
+                Print("Config null!");
+            }
         }
     }
 }
