@@ -50,13 +50,13 @@ namespace HADES.Core
         public static ConfigEntry<T> BindConfig<T>(string section,
                                                    string key,
                                                    T      defaultValue,
-                                                   string description) =>
-            _mod.Config.Bind
-            (
-                section,
-                key,
-                defaultValue,
-                description
-            );
+                                                   string description) => _mod.Config.Bind
+                                                                            (
+                                                                                section,
+                                                                                key,
+                                                                                defaultValue,
+                                                                                description
+                                                                            );
+
     }
 }
