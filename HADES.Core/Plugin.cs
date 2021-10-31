@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using static HADES.Utilities.Logging;
 using PluginInfo = HADES.Utilities.PluginInfo;
 
+
 namespace HADES.Core
 {
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
@@ -50,13 +51,13 @@ namespace HADES.Core
         public static ConfigEntry<T> BindConfig<T>(string section,
                                                    string key,
                                                    T      defaultValue,
-                                                   string description) =>
-            _mod.Config.Bind
-            (
-                section,
-                key,
-                defaultValue,
-                description
-            );
+                                                   string description) => _mod.Config.Bind
+                                                                            (
+                                                                                section,
+                                                                                key,
+                                                                                defaultValue,
+                                                                                description
+                                                                            );
+
     }
 }
