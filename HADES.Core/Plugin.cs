@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using static HADES.Utilities.Logging;
 using PluginInfo = HADES.Utilities.PluginInfo;
 
+
 namespace HADES.Core
 {
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
