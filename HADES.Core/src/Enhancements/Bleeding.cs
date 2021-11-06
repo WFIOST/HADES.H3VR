@@ -1,8 +1,6 @@
-using HADES.Configs;
-
 namespace HADES.Core
 {
-    public class Bleeding : HADESEnhancement<BleedingConfig>
+    public class Bleeding
     {
         private void FixedUpdate()
         {

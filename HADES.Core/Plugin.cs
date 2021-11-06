@@ -13,39 +13,20 @@ namespace HADES.Core
     [BepInPlugin(PluginInfo.GUID, PluginInfo.NAME, PluginInfo.VERSION)]
     public class Plugin : BaseUnityPlugin
     {
-        public static ManualLogSource ConsoleLogger;
-
+        public static ManualLogSource ConsoleLogger { get; private set; }
         private static Plugin _mod;
 
         public Plugin()
         {
-            _mod = this;
             ConsoleLogger = Logger;
-            Print($"Loading HADES version {PluginInfo.VERSION}");
+            _mod = this;
 
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void Start()
-        {
-            Print($"Loaded HADES version {PluginInfo.VERSION}!");
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            var trycount = 0;
-
-            load:
-            try
+            SceneManager.sceneLoaded += (scene, mode) => 
             {
-                GM.CurrentPlayerBody.gameObject.AddComponent<HADES>();
-                Print($"Loaded HADES after {trycount} tries");
-            }
-            catch (NullReferenceException e)
-            {
-                ++trycount;
-                goto load;
-            }
+                GM.CurrentPlayerBody.gameObject.AddComponent<EnhancedHealth>();
+                GM.CurrentPlayerBody.gameObject.AddComponent<EnhancedMovement>();
+                GM.CurrentPlayerBody.gameObject.AddComponent<FallDamage>();
+            };
         }
 
         public static ConfigEntry<T> BindConfig<T>(string section,
