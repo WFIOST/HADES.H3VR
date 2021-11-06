@@ -33,7 +33,7 @@ namespace HADES.Core
         public float RegenSpeed => _regenSpeedEntry.Value;
         private ConfigEntry<float> _regenSpeedEntry;
 
-        private const string CATEGORY_NAME = "Enhanced Health";
+        private const string CATEGORY_NAME = "EnhancedHealth";
 
         public EnhancedHealth()
         {

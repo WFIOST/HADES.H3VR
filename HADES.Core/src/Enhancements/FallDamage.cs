@@ -15,7 +15,7 @@ namespace HADES.Core
         private float _previousVelocity;
         private float _velocityDifference;
         
-        private const string CATEGORY_NAME = "Fall Damage";
+        private const string CATEGORY_NAME = "FallDamage";
 
         public bool Enabled => _enabledEntry.Value;
         private ConfigEntry<bool> _enabledEntry;

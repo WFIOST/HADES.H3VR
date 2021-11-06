@@ -125,7 +125,7 @@ namespace HADES.Core
 
         #endregion
 
-        private const string CATEGORY_NAME = "Enhanced Movement";
+        private const string CATEGORY_NAME = "EnhancedMovement";
 
         public EnhancedMovement()
         {
