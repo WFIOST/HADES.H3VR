@@ -142,7 +142,7 @@ namespace HADES.Core
             _maxStaminaEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Max Stamina",
+                "MaxStamina",
                 100f,
                 "Max stamina for the player, more stamina means you are able to move more"
             );
@@ -150,7 +150,7 @@ namespace HADES.Core
             _staminaGainEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Stamina Gain",
+                "StaminaGain",
                 15f,
                 "The speed of which stamina regenerates"
             );
@@ -158,7 +158,7 @@ namespace HADES.Core
             _staminaLossEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Stamina Loss",
+                "StaminaLoss",
                 30f,
                 "The speed of which stamina drains"
             );
@@ -166,7 +166,7 @@ namespace HADES.Core
             _staminaLossStartSpeedEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Stamina Loss Speed",
+                "StaminaLossSpeed",
                 10f,
                 "The speed that must be reached for stamina to drain"
             );
@@ -181,7 +181,7 @@ namespace HADES.Core
             _weightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Weight Modifer",
+                "WeightModifer",
                 1f,
                 "How much what you are carrying modifies the stamina loss"
             );
@@ -189,7 +189,7 @@ namespace HADES.Core
             _backpackWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Backpack Weight Modifier",
+                "BackpackWeightModifier",
                 10f,
                 "How much weight wearing a backpack will add"
             );
@@ -197,7 +197,7 @@ namespace HADES.Core
             _smallObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Small Object Weight Modifier",
+                "SmallObjectWeightModifier",
                 1f,
                 "How much weight a small object will add if it is in a Quickbelt slot"
             );
@@ -205,7 +205,7 @@ namespace HADES.Core
             _mediumObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Medium Object Weight Modifier",
+                "MediumObjectWeightModifier",
                 2.5f,
                 "How much weight a medium object will add if it is in a Quickbelt slot"
             );
@@ -213,7 +213,7 @@ namespace HADES.Core
             _largeObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Large Object Weight Modifier",
+                "LargeObjectWeightModifier",
                 5f,
                 "How much weight a large object will add if it is in a Quickbelt slot"
             );
@@ -221,7 +221,7 @@ namespace HADES.Core
             _massiveObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Massive Object Weight Modifier",
+                "MassiveObjectWeightModifier",
                 10f,
                 "How much weight a massive object will add if it is in a Quickbelt slot"
             );
@@ -229,7 +229,7 @@ namespace HADES.Core
             _ccbObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Can't Carry Big Object Weight Modifier",
+                "Can'tCarryBigObjectWeightModifier",
                 15f,
                 "How much weight a Can't Carry Big object will add if it is in a Quickbelt slot"
             );
@@ -244,7 +244,7 @@ namespace HADES.Core
             _jumpStaminaModifierField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "Jumping Stamina Modifier",
+                "JumpingStaminaModifier",
                 5f,
                 "How much stamina gets used when jumping"
             );
@@ -252,7 +252,7 @@ namespace HADES.Core
             _realGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "Realistic Gravity Jump Force",
+                "RealisticGravityJump Force",
                 3.1f,
                 "The force of which you jump on realistic gravity"
             );
@@ -260,7 +260,7 @@ namespace HADES.Core
             _playGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "Playful Gravity Jump Force",
+                "PlayfulGravityJump Force",
                 2.5f,
                 "The force of which you jump on playful gravity"
             );
@@ -268,7 +268,7 @@ namespace HADES.Core
             _moonGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "On The Moon Gravity Jump Force",
+                "OnTheMoonGravityJumpForce",
                 1.5f,
                 "The force of which you jump on \"On the Moon\" gravity"
             );
@@ -276,7 +276,7 @@ namespace HADES.Core
             _noneGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "No Gravity Jump Force",
+                "NoGravityJumpForce",
                 0f,
                 "The force of which you jump on no gravity"
             );

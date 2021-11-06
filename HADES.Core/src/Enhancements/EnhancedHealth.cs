@@ -48,7 +48,7 @@ namespace HADES.Core
             _regenCapEntry = BindConfig<float>
             (
                 CATEGORY_NAME,
-                "Regeneration Cap", 
+                "RegenerationCap", 
                 0.10f, 
                 "Limit to how much you may regenerate (Note: this is a percentage so 1 is 100%!)"
             );
@@ -56,7 +56,7 @@ namespace HADES.Core
             _regenDelayEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Regeneration Delay",
+                "RegenerationDelay",
                 10f,
                 "Number of seconds before the regeneration will start"
             );
@@ -64,7 +64,7 @@ namespace HADES.Core
             _regenSpeedEntry = Plugin.BindConfig
             (
                 CATEGORY_NAME,
-                "Regeneration Speed",
+                "RegenerationSpeed",
                 5f,
                 "How long does it take to regenerate to the regeneration cap"
             );

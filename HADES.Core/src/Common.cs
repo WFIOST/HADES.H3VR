@@ -30,12 +30,12 @@ namespace HADES.Utilities
 
     public static class Extensions
     {
-        public static Vector3 Add(this Vector3 vec3, Vector3 add) =>
-            new Vector3(vec3.x + add.x, vec3.y + add.y, vec3.z + add.z);
+        public static Vector3 Add(this Vector3 @this, Vector3 add) =>
+            new Vector3(@this.x + add.x, @this.y + add.y, @this.z + add.z);
 
 
-        public static Vector3 Add(this Vector3 vec3, float add) =>
-            new Vector3(vec3.x + add, vec3.y + add, vec3.z + add);
+        public static Vector3 Add(this Vector3 @this, float add) =>
+            new Vector3(@this.x + add, @this.y + add, @this.z + add);
 
         public static bool IsNull(this Object obj) => obj == null;
     }
