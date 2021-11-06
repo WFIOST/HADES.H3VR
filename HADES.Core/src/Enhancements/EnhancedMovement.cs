@@ -252,7 +252,7 @@ namespace HADES.Core
             _realGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "RealisticGravityJump Force",
+                "RealisticGravityJumpForce",
                 3.1f,
                 "The force of which you jump on realistic gravity"
             );
@@ -260,7 +260,7 @@ namespace HADES.Core
             _playGravModeJumpForceField = Plugin.BindConfig
             (
                 JUMP_CAT_NAME,
-                "PlayfulGravityJump Force",
+                "PlayfulGravityJumpForce",
                 2.5f,
                 "The force of which you jump on playful gravity"
             );
