@@ -229,7 +229,7 @@ namespace HADES.Core
             _ccbObjWeightModifierEntry = Plugin.BindConfig
             (
                 WEIGHT_CAT_NAME,
-                "Can'tCarryBigObjectWeightModifier",
+                "CantCarryBigObjectWeightModifier",
                 15f,
                 "How much weight a Can't Carry Big object will add if it is in a Quickbelt slot"
             );
