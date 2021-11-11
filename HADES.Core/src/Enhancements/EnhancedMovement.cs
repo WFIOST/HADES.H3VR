@@ -239,7 +239,7 @@ namespace HADES.Core
 
             #region Jumping
 
-            const string JUMP_CAT_NAME = CATEGORY_NAME + " - Jump Configuration";
+            const string JUMP_CAT_NAME = CATEGORY_NAME + "_JumpConfiguration";
 
             _jumpStaminaModifierField = Plugin.BindConfig
             (
