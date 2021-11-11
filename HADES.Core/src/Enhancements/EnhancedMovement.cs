@@ -8,8 +8,8 @@ using FVRQuickBeltSlot = FistVR.FVRQuickBeltSlot;
 using GM = FistVR.GM;
 using SimulationOptions = FistVR.SimulationOptions;
 using BepInEx.Configuration;
+using Debug = HADES.Utilities.Logging.Debug;
 
-using static HADES.Core.Plugin;
 using static HADES.Utilities.Logging;
 
 namespace HADES.Core
@@ -17,7 +17,7 @@ namespace HADES.Core
     public class EnhancedMovement : HADESEnhancement
     {
         public float Stamina           { get; private set; }
-        public float StaminaPercentage { get; private set; }
+        public float StaminaPercentage => (MaxStamina / Stamina) * 100f;
 
         public float Weight
         {
@@ -239,7 +239,7 @@ namespace HADES.Core
 
             #region Jumping
 
-            const string JUMP_CAT_NAME = CATEGORY_NAME + "_JumpConfiguration";
+            const string JUMP_CAT_NAME = CATEGORY_NAME + " - Jump Configuration";
 
             _jumpStaminaModifierField = Plugin.BindConfig
             (
@@ -253,7 +253,7 @@ namespace HADES.Core
             (
                 JUMP_CAT_NAME,
                 "RealisticGravityJumpForce",
-                3.1f,
+                6.2f,
                 "The force of which you jump on realistic gravity"
             );
 
@@ -261,7 +261,7 @@ namespace HADES.Core
             (
                 JUMP_CAT_NAME,
                 "PlayfulGravityJumpForce",
-                2.5f,
+                5f,
                 "The force of which you jump on playful gravity"
             );
 
@@ -269,7 +269,7 @@ namespace HADES.Core
             (
                 JUMP_CAT_NAME,
                 "OnTheMoonGravityJumpForce",
-                1.5f,
+                3f,
                 "The force of which you jump on \"On the Moon\" gravity"
             );
 
@@ -288,7 +288,6 @@ namespace HADES.Core
         {
             if (!Enabled) return;
             Stamina = MaxStamina;
-            StaminaPercentage = MaxStamina / Stamina * 100;
 
             FVRMovementManager.Jump += JumpPlus;
         }
@@ -300,6 +299,8 @@ namespace HADES.Core
             PlayerSpeed *= Convert.ToSingle(Stamina / MaxStamina);
         }
 
+        private float _timer;
+        private int _iterations;
         private void FixedUpdate()
         {
             if (!Enabled) return;
@@ -309,6 +310,25 @@ namespace HADES.Core
                 Stamina -= Convert.ToSingle((StaminaLoss + Weight + PlayerSpeed) * 0.02);
             else if (PlayerSpeed < StaminaLossStartSpeed && Stamina < MaxStamina)
                 Stamina += Convert.ToSingle((StaminaGain - Weight - PlayerSpeed) * 0.02);
+
+            if (_timer < 10f)
+            {
+                _timer += 0.02f;
+                return;
+            } 
+            else 
+            {
+                ++_iterations;
+                Debug.Print($"ITERATION {_iterations}");
+                Debug.Print("------------------------");
+                Debug.Print($"Stamina: {Stamina}/{MaxStamina}");
+                Debug.Print($"Stamina Loss: {StaminaLoss}");
+                Debug.Print($"Stamina Gain: {StaminaGain}");
+                Debug.Print($"Weight: {Weight}");
+                Debug.Print($"Player Speed: {PlayerSpeed}");
+                Debug.Print($"Stamina modifier: {Convert.ToSingle((StaminaLoss + Weight + PlayerSpeed) * 0.02)}");
+                _timer = 0f;
+            }
         }
 
         private void JumpPlus(FVRMovementManager.orig_Jump _, FistVR.FVRMovementManager self)

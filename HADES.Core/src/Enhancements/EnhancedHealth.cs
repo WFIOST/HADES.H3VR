@@ -12,7 +12,6 @@ namespace HADES.Core
     {
         private float _currentRegenDelayLength;
 
-        private Text? _hbText;
         private float _healthMonitor;
         private float _initialHealth;
 
@@ -65,7 +64,7 @@ namespace HADES.Core
             (
                 CATEGORY_NAME,
                 "RegenerationSpeed",
-                5f,
+                0.5f,
                 "How long does it take to regenerate to the regeneration cap"
             );
         }
@@ -74,11 +73,6 @@ namespace HADES.Core
         {
             if (!Enabled) return;
             _initialHealth = GM.GetPlayerHealth();
-            _hbText = HealthBar.transform.Find("f/Label_Title (1)").GetComponent<Text>();
-            if (_hbText == null)
-            {
-                Print("Could not get HealthBar");
-            }
         }
 
         private void Update()
@@ -86,8 +80,6 @@ namespace HADES.Core
             if (!Enabled) return;
             //i'm not sure who thought that the formula was (_initialhealth / currenthealth) * 100 lol - potatoes
             HealthPercentage = CurrentHealth / _initialHealth * 100;
-            if (_hbText != null)
-                _hbText.text = $"{HealthPercentage}%";
         }
 
         private void FixedUpdate()
@@ -97,14 +89,13 @@ namespace HADES.Core
             /* REGENERATION */
 
             //if player is below RegenCap
-            if (Player.GetPlayerHealth() < RegenCap * Player.GetMaxHealthPlayerRaw())
+            if (CurrentHealth < RegenCap * Player.GetMaxHealthPlayerRaw())
             {
                 //if the delay time's up
                 if (_currentRegenDelayLength >= RegenDelay * 50)
                 {
                     //if the player's hp is lower than what it was, assume damage taken, lower hp
-                    if (Player.GetPlayerHealth() < _healthMonitor) _currentRegenDelayLength = 0;
-
+                    if (CurrentHealth < _healthMonitor) _currentRegenDelayLength = 0;
                     //go add player hp
                     Player.HealPercent(RegenSpeed * 0.02f);
                 }
@@ -118,7 +109,7 @@ namespace HADES.Core
                 _currentRegenDelayLength = 0;
             }
 
-            _healthMonitor = Player.GetPlayerHealth();
+            _healthMonitor = CurrentHealth;
         }
     }
 }
